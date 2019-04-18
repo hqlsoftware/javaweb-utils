@@ -2,7 +2,6 @@ package json;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
-import lombok.var;
 import my.utils.plugin.json.JackonImpl;
 import org.junit.Test;
 

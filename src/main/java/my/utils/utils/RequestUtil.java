@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URISyntaxException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.util.*;
 
 /**
@@ -205,7 +208,7 @@ public class RequestUtil {
      * @param map
      * @return
      */
-    public static String getMapToString(Map<String,String> map){
+    public static String getQueryStringFromMap(Map<String,String> map){
         if(map==null || map.isEmpty())
             return null;
         Set<String> keySet = map.keySet();
@@ -217,7 +220,8 @@ public class RequestUtil {
         for (int i = 0; i < keyArray.length; i++) {
             // 参数值为空，则不参与签名 这个方法trim()是去空格
             if (map.get(keyArray[i]).trim().length() > 0) {
-                sb.append(keyArray[i]).append("=").append(map.get(keyArray[i]).trim());
+                sb.append(keyArray[i]).append("=")
+                        .append(URLEncoder.encode(map.get(keyArray[i]).trim(), Charset.forName("utf-8")));
             }
             if(i != keyArray.length-1){
                 sb.append("&");
@@ -231,7 +235,7 @@ public class RequestUtil {
      * @param str
      * @return
      */
-    public static Map<String,String> getStringToMap(String str){
+    public static Map<String,String> getMapFromQueryString(String str){
         if(StringUtil.isEmpty(str)){
             return null;
         }
@@ -249,7 +253,7 @@ public class RequestUtil {
             //截取一组字符串
             String[] strArray = strings[i].split("=");
             //strArray[0]为KEY  strArray[1]为值
-            map.put(strArray[0],strArray[1]);
+            map.put(strArray[0], URLDecoder.decode(strArray[1],Charset.forName("utf-8")));
         }
         return map;
     }
@@ -260,7 +264,7 @@ public class RequestUtil {
         Map<String,String> map = new HashMap<>();
         map.put("aaa","1111");
         map.put("bbb","2222");
-        System.out.println(getMapToString(map));
-        System.out.println(JsonUtil.instance.toJson(getStringToMap("aaa=111111&bbb=44444")));
+        System.out.println(getQueryStringFromMap(map));
+        System.out.println(JsonUtil.instance.toJson(getMapFromQueryString("aaa=111111&bbb=44444")));
     }
 }
