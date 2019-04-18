@@ -183,8 +183,4 @@ public class SystemUtil {
             System.out.println("" + obj + "=" + System.getProperties().get(obj));
         }
     }
-
-
-
-
 }

@@ -67,9 +67,7 @@ public class Md5Util {
     }
 
     public static void main(String[] args) {
-        System.out.println(md5("123456"));
-        System.out.println(md5By16("123456"));
-        System.out.println(md5("123456","utf-8"));
+        System.out.println(md5("15061805283hzcrm2019"));
     }
 
 }

@@ -143,13 +143,13 @@ public class WebApiJsonMsgUtil {
     //endregion
 
     public static void main(String[] args) {
-        System.out.println(WebApiJsonMsgUtil.error(null,null,new int[]{1,2,3}));
-        System.out.println(WebApiJsonMsgUtil.errorWithInternalError(null,null));
-        System.out.println(WebApiJsonMsgUtil.errorWithInvalidAuthorization(null,null));
-        System.out.println(WebApiJsonMsgUtil.errorWithInvalidParamer(null,null));
-        System.out.println(WebApiJsonMsgUtil.errorWithOperationFailed(null,null));
-        System.out.println(WebApiJsonMsgUtil.success(null,null));
-        System.out.println(WebApiJsonMsgUtil.successWithEmptyData(null,null));
+        System.out.println(error(null,null,new int[]{1,2,3}));
+        System.out.println(errorWithInternalError(null,null));
+        System.out.println(errorWithInvalidAuthorization(null,null));
+        System.out.println(errorWithInvalidParamer(null,null));
+        System.out.println(errorWithOperationFailed(null,null));
+        System.out.println(success(null,null));
+        System.out.println(successWithEmptyData(null,null));
     }
 
 }

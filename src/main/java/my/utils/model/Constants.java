@@ -89,10 +89,11 @@ public class Constants {
     //endregion
     
     //region cms相关
-    public static final String CACHE_SHOPPING_CART="my_cache_shoppingcart";
-    public static final String CACHE_SMS_CODE="my_cache_smscode";
-    public static final String CACHE_USER_INFO="my_cache_userinfo";
-    public static final String CACHE_MANAGER_INFO="my_cache_managerinfo";
-    
-    //endregion
+    public static final String CACHE_SHOPPING_CART="my_shoppingcart";
+    public static final String CACHE_SMS_CODE="my_smscode";
+    public static final String CACHE_USER_INFO="my_userinfo";
+    public static final String CACHE_MANAGER_INFO="my_managerinfo";
+
+     public static final String CACHE_CAPTCHA_CODE="my_captchacode";
+   //endregion
 }

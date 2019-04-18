@@ -4,14 +4,14 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 import my.utils.utils.JsonUtil;
 
-@Data
-@Accessors(chain = true)
 /**
  * Token认证实体
  *
  * @author heqilin
  * date:  2018-12-24 ok
  */
+@Data
+@Accessors(chain = true)
 public class Token {
     private String openId;
     private String token;
