@@ -14,6 +14,7 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.*;
+import java.util.function.Function;
 
 /**
  *  Request请求方法
@@ -208,7 +209,7 @@ public class RequestUtil {
      * @param map
      * @return
      */
-    public static String getQueryStringFromMap(Map<String,String> map){
+    public static String getQueryStringFromMap(Map map,Function<String,String> handleKey){
         if(map==null || map.isEmpty())
             return null;
         Set<String> keySet = map.keySet();
@@ -219,9 +220,13 @@ public class RequestUtil {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < keyArray.length; i++) {
             // 参数值为空，则不参与签名 这个方法trim()是去空格
-            if (map.get(keyArray[i]).trim().length() > 0) {
-                sb.append(keyArray[i]).append("=")
-                        .append(URLEncoder.encode(map.get(keyArray[i]).trim(), Charset.forName("utf-8")));
+            if (map.get(keyArray[i]).toString().trim().length() > 0) {
+                if(handleKey!=null){
+                    sb.append(handleKey.apply(keyArray[i])).append("=");
+                }else{
+                    sb.append(keyArray[i]).append("=");
+                }
+                sb.append(URLEncoder.encode(map.get(keyArray[i]).toString().trim(), Charset.forName("utf-8")));
             }
             if(i != keyArray.length-1){
                 sb.append("&");
@@ -235,7 +240,7 @@ public class RequestUtil {
      * @param str
      * @return
      */
-    public static Map<String,String> getMapFromQueryString(String str){
+    public static Map getMapFromQueryString(String str){
         if(StringUtil.isEmpty(str)){
             return null;
         }
@@ -257,6 +262,7 @@ public class RequestUtil {
         }
         return map;
     }
+
     //endregion
 
 
@@ -264,7 +270,7 @@ public class RequestUtil {
         Map<String,String> map = new HashMap<>();
         map.put("aaa","1111");
         map.put("bbb","2222");
-        System.out.println(getQueryStringFromMap(map));
+        System.out.println(getQueryStringFromMap(map,x->"#"+x+"#"));
         System.out.println(JsonUtil.instance.toJson(getMapFromQueryString("aaa=111111&bbb=44444")));
     }
 }

@@ -4,6 +4,7 @@ import my.utils.model.WebApiJsonMsg;
 import my.utils.utils.*;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
 
@@ -17,7 +18,11 @@ public class JuheSmsImpl implements ISms {
     private Properties prop = PropUtil.getProp(SystemUtil.getMyUtilConfigPath());
 
     @Override
-    public WebApiJsonMsg send(String mobile, String content, String templateId) {
+    public WebApiJsonMsg send(String mobile, Map contentMap, String templateId, String signName) {
+        String content = "";
+        if(contentMap!=null && !contentMap.isEmpty()){
+            content = RequestUtil.getQueryStringFromMap(contentMap,x->"#"+x+"#");
+        }
         String url = "http://v.juhe.cn/sms/send";
         Map<String,String> map = new HashMap<>();
         map.put("key",prop.getProperty("my.utils.plugin.sms.juhesms.key"));
@@ -35,7 +40,10 @@ public class JuheSmsImpl implements ISms {
 
     public static void main(String[] args) {
         JuheSmsImpl juheSms = new JuheSmsImpl();
-        WebApiJsonMsg webApiJsonMsg= juheSms.send("15061805283", "#Mobile#=15061805283&#SubjectName#=test","151074");
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        linkedHashMap.put("Mobile","15061805283");
+        linkedHashMap.put("SubjectName","test");
+        WebApiJsonMsg webApiJsonMsg= juheSms.send("15061805283", linkedHashMap,"151074",null);
         System.out.println(webApiJsonMsg);
     }
 }

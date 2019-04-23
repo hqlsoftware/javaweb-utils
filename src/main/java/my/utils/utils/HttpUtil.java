@@ -46,7 +46,7 @@ public class HttpUtil {
     }
 
     public static String get(String url, Map<String,String> data,Map<String,String> header){
-        String urlAttach = RequestUtil.getQueryStringFromMap(data);
+        String urlAttach = RequestUtil.getQueryStringFromMap(data,null);
         if(StringUtil.isNotEmpty(urlAttach)){
             urlAttach = "?"+urlAttach;
         }
