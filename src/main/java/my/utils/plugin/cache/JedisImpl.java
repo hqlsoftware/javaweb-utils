@@ -3,13 +3,9 @@ package my.utils.plugin.cache;
 import my.utils.utils.JsonUtil;
 import my.utils.utils.PropUtil;
 import my.utils.utils.SystemUtil;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
+import redis.clients.jedis.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * Redis缓存
@@ -158,6 +154,77 @@ public class JedisImpl implements ICache {
         try{
             client = getClient();
             return client.zcard(cacheKey);
+        }finally {
+            close(client);
+        }
+    }
+
+    public double zScore(String cacheKey,String memeber){
+        Jedis client = null;
+        try{
+            client = getClient();
+            return client.zscore(cacheKey,memeber);
+        }finally {
+            close(client);
+        }
+    }
+
+    public double zIncrby(String cacheKey,double increment,String memeber){
+        Jedis client = null;
+        try{
+            client = getClient();
+            return client.zincrby(cacheKey,increment,memeber);
+        }finally {
+            close(client);
+        }
+    }
+
+    public Set<String> zRange(String cacheKey, long start, long stop){
+        Jedis client = null;
+        try{
+            client = getClient();
+            return client.zrange(cacheKey,start,stop);
+        }finally {
+            close(client);
+        }
+    }
+
+    public Map<String,Double> zRangeWithScores(String cacheKey, long start, long stop){
+        Jedis client = null;
+        try{
+            client = getClient();
+            Set<Tuple> list =  client.zrangeWithScores(cacheKey,start,stop);
+            Map<String,Double> map = new LinkedHashMap<>();
+            list.forEach(x->{
+                map.put(x.getElement(),x.getScore());
+            });
+            return map;
+        }finally {
+            close(client);
+        }
+    }
+
+    public Map<String,Double> zscan(String cacheKey, int count){
+        Jedis client = null;
+        try{
+            client = getClient();
+            Map<String,Double> map = new LinkedHashMap<>();
+            // 游标初始值为0
+            String cursor = ScanParams.SCAN_POINTER_START;
+            ScanParams scanParams = new ScanParams();
+            scanParams.count(count);
+            while (true) {
+                ScanResult<Tuple> scanResult = client.zscan(cacheKey,cursor,scanParams);
+                cursor = scanResult.getCursor();// 返回0 说明遍历完成
+                List<Tuple> list = scanResult.getResult();
+                list.forEach(x->{
+                    map.put(x.getElement(),x.getScore());
+                });
+                if ("0".equals(cursor)){
+                    break;
+                }
+            }
+            return map;
         }finally {
             close(client);
         }

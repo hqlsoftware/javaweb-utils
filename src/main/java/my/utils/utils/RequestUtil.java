@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -226,7 +227,11 @@ public class RequestUtil {
                 }else{
                     sb.append(keyArray[i]).append("=");
                 }
-                sb.append(URLEncoder.encode(map.get(keyArray[i]).toString().trim(), Charset.forName("utf-8")));
+                try {
+                    sb.append(URLEncoder.encode(map.get(keyArray[i]).toString().trim(),"utf-8"));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
             }
             if(i != keyArray.length-1){
                 sb.append("&");
@@ -258,13 +263,16 @@ public class RequestUtil {
             //截取一组字符串
             String[] strArray = strings[i].split("=");
             //strArray[0]为KEY  strArray[1]为值
-            map.put(strArray[0], URLDecoder.decode(strArray[1],Charset.forName("utf-8")));
+            try {
+                map.put(strArray[0], URLDecoder.decode(strArray[1],"utf-8"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
         }
         return map;
     }
 
     //endregion
-
 
     public static void main(String[] args) {
         Map<String,String> map = new HashMap<>();
