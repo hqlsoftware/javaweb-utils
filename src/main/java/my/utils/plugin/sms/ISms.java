@@ -1,8 +1,7 @@
 package my.utils.plugin.sms;
 
-import my.utils.model.WebApiJsonMsg;
+import my.utils.model.Result;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -11,5 +10,5 @@ import java.util.Map;
  * date 2019/04/18
  */
 public interface ISms {
-    WebApiJsonMsg send(String mobile, Map content, String templateId, String signName);
+    Result send(String mobile, Map content, String templateId, String signName);
 }

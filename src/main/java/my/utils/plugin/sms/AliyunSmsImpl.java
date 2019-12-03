@@ -8,7 +8,7 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.exceptions.ServerException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
-import my.utils.model.WebApiJsonMsg;
+import my.utils.model.Result;
 import my.utils.utils.*;
 
 import java.util.LinkedHashMap;
@@ -25,7 +25,7 @@ public class AliyunSmsImpl implements ISms {
     private Properties prop = PropUtil.getProp(SystemUtil.getMyUtilConfigPath());
 
     @Override
-    public WebApiJsonMsg send(String mobile, Map contentMap, String templateId, String signName) {
+    public Result send(String mobile, Map contentMap, String templateId, String signName) {
         String content = "";
         if(contentMap!=null && !contentMap.isEmpty()){
             content = JsonUtil.instance.toJson(contentMap);
@@ -47,7 +47,7 @@ public class AliyunSmsImpl implements ISms {
         try {
             CommonResponse response = client.getCommonResponse(request);
             String result = response.getData();
-            return WebApiJsonMsgUtil.success("操作成功",result);
+            return ResultUtil.success(result);
         } catch (ServerException e) {
             e.printStackTrace();
         } catch (ClientException e) {
@@ -60,7 +60,7 @@ public class AliyunSmsImpl implements ISms {
         AliyunSmsImpl aliyunSms = new AliyunSmsImpl();
         LinkedHashMap linkedHashMap = new LinkedHashMap();
         linkedHashMap.put("code","15061805283");
-        WebApiJsonMsg webApiJsonMsg= aliyunSms.send("15061805283",linkedHashMap,"SMS_129740077","智题库");
-        System.out.println(webApiJsonMsg);
+        Result result = aliyunSms.send("15061805283",linkedHashMap,"SMS_129740077","智题库");
+        System.out.println(result);
     }
 }

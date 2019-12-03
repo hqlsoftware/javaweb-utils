@@ -1,9 +1,8 @@
 package my.utils.plugin.cache;
 
-import my.utils.utils.WebApiJsonMsgUtil;
-import my.utils.model.WebApiJsonMsg;
+import my.utils.utils.ResultUtil;
+import my.utils.model.Result;
 
-import java.util.List;
 import java.util.function.Supplier;
 
 /**
@@ -17,13 +16,13 @@ public interface ICache {
     /**
      * 测试配置是否确
      **/
-    default WebApiJsonMsg isConfigurationSuccess() {
+    default Result isConfigurationSuccess() {
         String cacheKey = "testcacheisok";
         addCache(cacheKey,"ok");
         String cacheObj = getCache(cacheKey);
         if(cacheObj.equals("ok"))
-            return WebApiJsonMsgUtil.success(null,cacheObj);
-        return WebApiJsonMsgUtil.error(null,null,null);
+            return ResultUtil.success(cacheObj);
+        return ResultUtil.errorWithOperationFailed();
     }
 
     /**

@@ -15,7 +15,6 @@ import my.utils.utils.JsonUtil;
 public class Token {
     private String openId;
     private String token;
-    private String userType;
     private String loginType;
 
     public String toString() {

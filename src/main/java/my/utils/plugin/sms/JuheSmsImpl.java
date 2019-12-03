@@ -1,6 +1,6 @@
 package my.utils.plugin.sms;
 
-import my.utils.model.WebApiJsonMsg;
+import my.utils.model.Result;
 import my.utils.utils.*;
 
 import java.util.HashMap;
@@ -18,7 +18,7 @@ public class JuheSmsImpl implements ISms {
     private Properties prop = PropUtil.getProp(SystemUtil.getMyUtilConfigPath());
 
     @Override
-    public WebApiJsonMsg send(String mobile, Map contentMap, String templateId, String signName) {
+    public Result send(String mobile, Map contentMap, String templateId, String signName) {
         String content = "";
         if(contentMap!=null && !contentMap.isEmpty()){
             content = RequestUtil.getQueryStringFromMap(contentMap,x->"#"+x+"#");
@@ -32,10 +32,10 @@ public class JuheSmsImpl implements ISms {
         map.put("tpl_value",content);
         Map<String,Object> obj = JsonUtil.instance.toBean(HttpUtil.get(url,map,null),HashMap.class);
         if(Integer.parseInt(obj.get("error_code").toString())==0){
-            return WebApiJsonMsgUtil.success("发送成功",null);
+            return ResultUtil.success();
         }
 
-        return WebApiJsonMsgUtil.errorWithOperationFailed("发送失败:"+obj.get("reason"),obj);
+        return ResultUtil.errorWithOperationFailed("发送失败:"+obj.get("reason"));
     }
 
     public static void main(String[] args) {
@@ -43,7 +43,7 @@ public class JuheSmsImpl implements ISms {
         LinkedHashMap linkedHashMap = new LinkedHashMap();
         linkedHashMap.put("Mobile","15061805283");
         linkedHashMap.put("SubjectName","test");
-        WebApiJsonMsg webApiJsonMsg= juheSms.send("15061805283", linkedHashMap,"151074",null);
-        System.out.println(webApiJsonMsg);
+        Result result = juheSms.send("15061805283", linkedHashMap,"151074",null);
+        System.out.println(result);
     }
 }

@@ -1,7 +1,7 @@
 package my.utils.utils;
 
 import my.utils.model.Constants;
-import my.utils.model.WebApiJsonMsg;
+import my.utils.model.Result;
 import my.utils.plugin.captcha.Captcha;
 import my.utils.plugin.captcha.CaptchaParam;
 import my.utils.plugin.captcha.GifCaptcha;
@@ -69,19 +69,19 @@ public class CaptchaUtil {
      * @param getCapchaCode
      * @return
      */
-    public static WebApiJsonMsg check(String code, Function<CaptchaParam,String> getCapchaCode) {
+    public static Result check(String code, Function<CaptchaParam,String> getCapchaCode) {
         if (StringUtil.isEmpty(code)) {
-            return WebApiJsonMsgUtil.errorWithOperationFailed("验证码为空", code);
+            return ResultUtil.errorWithInvalidParamer("验证码为空");
         }
         if(getCapchaCode==null){
-            return WebApiJsonMsgUtil.errorWithOperationFailed("验证码为空", code);
+            return ResultUtil.errorWithOperationFailed("验证码为空");
         }
         String codeTrue = getCapchaCode.apply(new CaptchaParam()
                 .setCacheName(Constants.CACHE_CAPTCHA_CODE));
 
         if(!code.equals(codeTrue)){
-            return WebApiJsonMsgUtil.errorWithOperationFailed("图形码不正确", code);
+            return ResultUtil.errorWithOperationFailed("图形码不正确");
         }
-        return  WebApiJsonMsgUtil.success("验证成功", code);
+        return  ResultUtil.success();
     }
 }

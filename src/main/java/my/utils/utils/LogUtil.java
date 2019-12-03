@@ -12,17 +12,6 @@ import java.io.File;
 
 @Slf4j
 public class LogUtil {
-
-    static {
-//        try {
-//            LogBackConfigLoader.load(LogUtil.class.getClassLoader().getResource("logback-spring.xml").getPath());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (JoranException e) {
-//            e.printStackTrace();
-//        }
-    }
-
     //region 往文件中写入日志
     /**
      * 往文件中写入日志
@@ -36,6 +25,10 @@ public class LogUtil {
         if(!FolderUtil.exist(filePath))
             FolderUtil.create(filePath);
         FileUtil.writeFile(filePath+logName+".txt",content);
+    }
+    public static void writeLog(String content, String logName)
+    {
+        writeLog(content,logName,null);
     }
     //endregion
 
