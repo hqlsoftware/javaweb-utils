@@ -1,9 +1,11 @@
 package my.utils.utils;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
@@ -25,9 +27,9 @@ public class StringUtil {
     /**
      * 编码
      **/
-    public static String encodeUrl(String str){
+    public static String encodeUrl(String str) {
         try {
-            return URLEncoder.encode(str,"utf-8" );
+            return URLEncoder.encode(str, "utf-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -37,9 +39,9 @@ public class StringUtil {
     /**
      * 解码
      **/
-    public static String decodeUrl(String str){
+    public static String decodeUrl(String str) {
         try {
-            return URLDecoder.decode(str,"utf-8");
+            return URLDecoder.decode(str, "utf-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -50,25 +52,25 @@ public class StringUtil {
     /**
      * 是否不为空
      **/
-    public static boolean isNotEmpty(Object str){
-        return str!=null && !"".equals(str.toString().trim());
+    public static boolean isNotEmpty(Object str) {
+        return str != null && !"".equals(str.toString().trim());
     }
 
     /**
      * 是否为空
      **/
-    public static boolean isEmpty(Object str){
-        return str==null || "".equals(str.toString().trim());
+    public static boolean isEmpty(Object str) {
+        return str == null || "".equals(str.toString().trim());
     }
 
     /**
      * 是否全部不为空
      **/
-    public  static  boolean isAllNotEmpty(String[] str){
-        if(str==null || str.length==0)
+    public static boolean isAllNotEmpty(String[] str) {
+        if (str == null || str.length == 0)
             return false;
         for (String s : str) {
-            if(!isNotEmpty(s))
+            if (!isNotEmpty(s))
                 return false;
         }
         return true;
@@ -77,11 +79,11 @@ public class StringUtil {
     /**
      * 是否有一个为空
      **/
-    public  static  boolean isOneEmpty(String[] str){
-        if(str==null || str.length==0)
+    public static boolean isOneEmpty(String[] str) {
+        if (str == null || str.length == 0)
             return true;
         for (String s : str) {
-            if(!isNotEmpty(s))
+            if (!isNotEmpty(s))
                 return true;
         }
         return false;
@@ -90,11 +92,11 @@ public class StringUtil {
     /**
      * 元素是否在集合中
      **/
-    public static <T> boolean isIn(T str,T[] result){
-        if(result==null || result.length==0)
+    public static <T> boolean isIn(T str, T[] result) {
+        if (result == null || result.length == 0)
             return false;
         for (T s : result) {
-            if(str.equals(s))
+            if (str.equals(s))
                 return true;
         }
         return false;
@@ -103,7 +105,7 @@ public class StringUtil {
     /**
      * 重复N个字符
      **/
-    public static String repeatNStr(int n,String str){
+    public static String repeatNStr(int n, String str) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < n; i++) {
             sb.append(str);
@@ -114,9 +116,8 @@ public class StringUtil {
     /**
      * 替换N个字符
      **/
-    public static String replaceNStar(String str, int startIndex, int length, String replaceChar)
-    {
-        String replaceStr = str.substring(startIndex,startIndex + length);
+    public static String replaceNStar(String str, int startIndex, int length, String replaceChar) {
+        String replaceStr = str.substring(startIndex, startIndex + length);
         return str.replace(replaceStr, repeatNStr(length, replaceChar));
     }
 
@@ -125,8 +126,7 @@ public class StringUtil {
     /**
      * 去掉前缀字符
      **/
-    public static String removePrefixString(String val, String str)
-    {
+    public static String removePrefixString(String val, String str) {
         String strRegex = "^(" + str + ")";
         return val.replaceAll(strRegex, "");
     }
@@ -134,10 +134,24 @@ public class StringUtil {
     /**
      * 去掉后缀字符
      **/
-    public static String removeSuffixString(String val, String str)
-    {
+    public static String removeSuffixString(String val, String str) {
         String strRegex = "(" + str + ")" + "$";
         return val.replaceAll(strRegex, "");
+    }
+
+    //endregion
+
+    //region 补足前缀的0
+
+    /**
+     * 补足前缀的0
+     * @param number 数值
+     * @param digit 补足几位
+     * @return
+     */
+    public static String addZeroPrefixString(long number, int digit) {
+        DecimalFormat df = new DecimalFormat(repeatNStr(digit,"0"));
+        return df.format(number);
     }
 
     //endregion
@@ -147,27 +161,26 @@ public class StringUtil {
     /**
      * 首字母大写
      **/
-    public static String firstUpper(String str)
-    {
+    public static String firstUpper(String str) {
         return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 
     /**
      * 首字母小写
      **/
-    public static String firstLower(String str)
-    {
+    public static String firstLower(String str) {
         return str.substring(0, 1).toLowerCase() + str.substring(1);
     }
 
     //endregion
 
     //region 获取字节码
-    public static byte[] getBytes(String str,Charset charset){
+    public static byte[] getBytes(String str, Charset charset) {
         return str.getBytes(charset);
     }
-    public static String byteToString(byte[] bytes,Charset charset){
-        return new String(bytes,charset);
+
+    public static String byteToString(byte[] bytes, Charset charset) {
+        return new String(bytes, charset);
     }
     //endregion
 
@@ -175,6 +188,7 @@ public class StringUtil {
     private static StringBuilder newStringBuilder(final int noOfItems) {
         return new StringBuilder(noOfItems * 16);
     }
+
     public static String join(final Object[] array, String separator, final int startIndex, final int endIndex) {
         if (array == null) {
             return null;
@@ -205,5 +219,6 @@ public class StringUtil {
 
 
     //endregion
+
 
 }
