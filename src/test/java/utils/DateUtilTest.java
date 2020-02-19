@@ -1,6 +1,6 @@
 package utils;
 
-import my.utils.utils.DateUtil;
+import com.heqilin.util.DateUtil;
 import org.junit.Test;
 
 import java.util.Date;

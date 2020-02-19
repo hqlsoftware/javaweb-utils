@@ -1,6 +1,6 @@
 package utils;
 
-import my.utils.utils.LogUtil;
+import com.heqilin.util.LogUtil;
 import org.junit.jupiter.api.Test;
 
 class LogUtilTest {

@@ -1,7 +1,7 @@
 package json;
 
 import lombok.var;
-import my.utils.plugin.json.JsonFactory;
+import com.heqilin.util.plugin.json.JsonFactory;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

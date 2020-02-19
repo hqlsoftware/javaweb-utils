@@ -1,6 +1,6 @@
 package utils;
 
-import my.utils.utils.StringUtil;
+import com.heqilin.util.StringUtil;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
