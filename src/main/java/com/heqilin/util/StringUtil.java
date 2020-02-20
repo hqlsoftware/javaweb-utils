@@ -1,6 +1,7 @@
 package com.heqilin.util;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
@@ -214,5 +215,63 @@ public class StringUtil {
 
     //endregion
 
+    //region 数字类型格式化为字符串
+
+    /**
+     * 超过1W数字转换为1.23万,保留两位小数点
+     * @param number
+     * @return
+     */
+    public static String formatNumberMoreThenTenThousand(long number) {
+        if(number<10000){
+            return String.valueOf(number);
+        }
+        double result = number*1.0/10000;
+        DecimalFormat decimalFormat = new DecimalFormat("###################.##");
+        return decimalFormat.format(result)+"万";
+    }
+
+    /**
+     * 四舍五入 格式化小数点 （double long object decimal）
+     * @param dicimal
+     * @param dot
+     * @param <T>
+     * @return
+     */
+    public static <T> String formatDot (T dicimal,int dot){
+        String dotChar = repeatNStr(dot,"#");
+        if(isEmpty(dotChar)){
+            dotChar="";
+        }else{
+            dotChar ="."+dotChar;
+        }
+        DecimalFormat decimalFormat = new DecimalFormat("###################"+dotChar);
+        return  decimalFormat.format(dicimal);
+    }
+
+    /**
+     * 四舍五入 格式化小数点 （double long object decimal）金额格式
+     * @param dicimal
+     * @param dot
+     * @param <T>
+     * @return
+     */
+    public static <T> String formatMoney (T dicimal,int dot){
+        String dotChar = repeatNStr(dot,"#");
+        if(isEmpty(dotChar)){
+            dotChar="";
+        }else{
+            dotChar ="."+dotChar;
+        }
+        DecimalFormat decimalFormat = new DecimalFormat("#,###,###,###,###,###,###"+dotChar);
+        return  decimalFormat.format(dicimal);
+    }
+    //endregion
+
+    public static void main(String[] args) {
+        System.out.println(formatMoney(1113398447.49,0));
+        BigDecimal d= new BigDecimal("56719338.55");
+        System.out.println(formatMoney(d,1));
+    }
 
 }
