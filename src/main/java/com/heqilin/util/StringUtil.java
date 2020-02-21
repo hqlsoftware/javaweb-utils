@@ -268,6 +268,28 @@ public class StringUtil {
     }
     //endregion
 
+    //region 获取字符串的长度
+
+    /**
+     * 获取字符串的长度，对双字符（包括汉字）按两位计数
+     * @param value
+     * @return
+     */
+    public static int getStrLength(String value) {
+        int valueLength = 0;
+        String chinese = "[\u0391-\uFFE5]";
+        for (int i = 0; i < value.length(); i++) {
+            String temp = value.substring(i, i + 1);
+            if (temp.matches(chinese)) {
+                valueLength += 2;
+            } else {
+                valueLength += 1;
+            }
+        }
+        return valueLength;
+    }
+    //endregion
+
     public static void main(String[] args) {
         System.out.println(formatMoney(1113398447.49,0));
         BigDecimal d= new BigDecimal("56719338.55");
