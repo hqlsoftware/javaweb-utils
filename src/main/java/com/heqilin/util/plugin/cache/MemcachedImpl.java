@@ -25,10 +25,10 @@ public class MemcachedImpl implements ICache {
     static{
         //加载配置文件
         Properties prop = PropUtil.getProp(SystemUtil.getMyUtilConfigPath());
-        final String host = prop.getProperty("my.utils.cacheutil.memcached.host");//控制台上的“内网地址”
-        final String port =prop.getProperty("my.utils.cacheutil.memcached.port"); //默认端口 11211，不用改
-        final String username = prop.getProperty("my.utils.cacheutil.memcached.username"); //控制台上的“实例ID”，新版ocs的username可以置空
-        final String password = prop.getProperty("my.utils.cacheutil.memcached.password"); //邮件中提供的“密码”
+        final String host = prop.getProperty("my.util.cacheutil.memcached.host");//控制台上的“内网地址”
+        final String port =prop.getProperty("my.util.cacheutil.memcached.port"); //默认端口 11211，不用改
+        final String username = prop.getProperty("my.util.cacheutil.memcached.username"); //控制台上的“实例ID”，新版ocs的username可以置空
+        final String password = prop.getProperty("my.util.cacheutil.memcached.password"); //邮件中提供的“密码”
         AuthDescriptor ad = new AuthDescriptor(new String[]{"PLAIN"}, new PlainCallbackHandler(username, password));
         try {
             client = new MemcachedClient(

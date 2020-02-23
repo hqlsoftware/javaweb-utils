@@ -27,13 +27,13 @@ public class JedisImpl implements ICache {
         //加载配置文件
         Properties prop = PropUtil.getProp(SystemUtil.getMyUtilConfigPath());
         JedisPoolConfig poolConfig = new JedisPoolConfig();
-        poolConfig.setMaxTotal(Integer.parseInt(prop.getProperty("my.utils.cacheutil.redis.MaxTotal")));//最大连接数，连接全部用完，进行等待
-        poolConfig.setMinIdle(Integer.parseInt(prop.getProperty("my.utils.cacheutil.redis.MinIdle"))); //最小空余数
-        poolConfig.setMaxIdle(Integer.parseInt(prop.getProperty("my.utils.cacheutil.redis.MaxIdle"))); //最大空余数
+        poolConfig.setMaxTotal(Integer.parseInt(prop.getProperty("my.util.cacheutil.redis.MaxTotal")));//最大连接数，连接全部用完，进行等待
+        poolConfig.setMinIdle(Integer.parseInt(prop.getProperty("my.util.cacheutil.redis.MinIdle"))); //最小空余数
+        poolConfig.setMaxIdle(Integer.parseInt(prop.getProperty("my.util.cacheutil.redis.MaxIdle"))); //最大空余数
         pool = new JedisPool(poolConfig
-                ,prop.getProperty("my.utils.cacheutil.redis.host")
-                ,Integer.parseInt(prop.getProperty("my.utils.cacheutil.redis.port"))
-                ,10000,prop.getProperty("my.utils.cacheutil.redis.password"));
+                ,prop.getProperty("my.util.cacheutil.redis.host")
+                ,Integer.parseInt(prop.getProperty("my.util.cacheutil.redis.port"))
+                ,10000,prop.getProperty("my.util.cacheutil.redis.password"));
     }
 
     public static Jedis getClient(){

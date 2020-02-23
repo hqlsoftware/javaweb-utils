@@ -12,7 +12,7 @@ import com.heqilin.util.SystemUtil;
  **/
 public class JsonFactory {
     public static String jsonType = PropUtil.getProp(SystemUtil.getMyUtilConfigPath())
-            .getProperty("my.utils.jsonutil.jsonType");
+            .getProperty("my.util.jsonutil.jsonType");
 
     private JsonFactory(){
         throw new AssertionError();

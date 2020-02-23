@@ -33,8 +33,8 @@ public class AliyunSmsImpl implements ISms {
         if(contentMap!=null && !contentMap.isEmpty()){
             content = JsonUtil.instance.toJson(contentMap);
         }
-        DefaultProfile profile = DefaultProfile.getProfile("default", prop.getProperty("my.utils.plugin.sms.aliyunsms.key")
-                ,prop.getProperty("my.utils.plugin.sms.aliyunsms.secret"));
+        DefaultProfile profile = DefaultProfile.getProfile("default", prop.getProperty("my.util.plugin.sms.aliyunsms.key")
+                ,prop.getProperty("my.util.plugin.sms.aliyunsms.secret"));
         IAcsClient client = new DefaultAcsClient(profile);
 
         CommonRequest request = new CommonRequest();

@@ -12,7 +12,7 @@ import com.heqilin.util.SystemUtil;
  **/
 public class CacheFactory {
     public static String cacheType = PropUtil.getProp(SystemUtil.getMyUtilConfigPath())
-            .getProperty("my.utils.cacheutil.cacheType");
+            .getProperty("my.util.cacheutil.cacheType");
 
     private CacheFactory(){
         throw new AssertionError();

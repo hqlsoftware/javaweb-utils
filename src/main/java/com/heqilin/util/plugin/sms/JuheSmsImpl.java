@@ -25,7 +25,7 @@ public class JuheSmsImpl implements ISms {
         }
         String url = "http://v.juhe.cn/sms/send";
         Map<String,String> map = new HashMap<>();
-        map.put("key",prop.getProperty("my.utils.plugin.sms.juhesms.key"));
+        map.put("key",prop.getProperty("my.util.plugin.sms.juhesms.key"));
         map.put("mobile",mobile);
         map.put("dtype","json");
         map.put("tpl_id",templateId);

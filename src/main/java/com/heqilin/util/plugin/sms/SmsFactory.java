@@ -11,7 +11,7 @@ import com.heqilin.util.SystemUtil;
  */
 public class SmsFactory {
     public static String smsType = PropUtil.getProp(SystemUtil.getMyUtilConfigPath())
-            .getProperty("my.utils.smsutil.smsType");
+            .getProperty("my.util.smsutil.smsType");
 
     private SmsFactory(){
         throw new AssertionError();
