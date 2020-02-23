@@ -144,13 +144,13 @@ public class SystemUtil {
     //region 获取my.utils配置文件路径
     /**
      * 获取 my.util jar包的配置文件路径
-     * 开发环境：在resources文件根目录下 可以新建my.util.properties文件，若没有，则为java/my/util/config/my.util.properties文件
+     * classpath下查找 ehcache.xml
      **/
     public static String getMyUtilConfigPath_EhCache(){
         String javaClassPath = getProjectClassesPath();
-        boolean existFile = FileUtil.exist(javaClassPath +"ehcache-config.xml");
+        boolean existFile = FileUtil.exist(javaClassPath +"ehcache.xml");
         if(existFile)
-            return getProjectClassesPath()+"ehcache-config.xml";
+            return javaClassPath+"ehcache.xml";
         return javaClassPath  + Constants.MYUTILS_CONFIG_PROPERTIES_URL_EHCACHE;
     }
     //endregion
@@ -158,7 +158,7 @@ public class SystemUtil {
     //region 获取my.utils配置文件路径
     /**
      * 获取 my.util jar包的配置文件路径
-     * 开发环境：在resources文件根目录下 可以新建my.util.properties文件，若没有，则为java/my/util/config/my.util.properties文件
+     * classpath下查找 my.util.properties
      **/
     public static String getMyUtilConfigPath(){
         String javaClassPath = getProjectClassesPath();

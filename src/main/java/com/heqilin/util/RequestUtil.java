@@ -7,6 +7,7 @@ import eu.bitwalker.useragentutils.Version;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -37,7 +38,7 @@ public class RequestUtil {
             if(SystemUtil.isWindowsSystem()){
                 path = StringUtil.removePrefixString(path,"/");
             }
-            return StringUtil.isEmpty(filePath) ? path : path + "/" + filePath;
+            return StringUtil.isEmpty(filePath) ? path : path + File.separator + filePath;
         } catch (URISyntaxException var2) {
             throw new RuntimeException(var2);
         }

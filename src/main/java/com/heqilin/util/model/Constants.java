@@ -83,8 +83,8 @@ public class Constants {
     //endregion
 
     //region my.utils相关
-    public  static  final  String  MYUTILS_CONFIG_PROPERTIES_URL = "com/heqilin/config/my.util.properties";
-    public  static  final  String  MYUTILS_CONFIG_PROPERTIES_URL_EHCACHE = "com/heqilin/config/ehcache-config.xml";
+    public  static  final  String  MYUTILS_CONFIG_PROPERTIES_URL = "my.util.properties";
+    public  static  final  String  MYUTILS_CONFIG_PROPERTIES_URL_EHCACHE = "ehcache.xml";
 
     //endregion
     

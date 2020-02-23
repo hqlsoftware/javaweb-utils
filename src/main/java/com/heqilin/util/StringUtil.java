@@ -6,6 +6,7 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.text.DecimalFormat;
+import java.text.MessageFormat;
 
 /**
  * 字符串帮助类
@@ -266,6 +267,21 @@ public class StringUtil {
         DecimalFormat decimalFormat = new DecimalFormat("#,###,###,###,###,###,###"+dotChar);
         return  decimalFormat.format(dicimal);
     }
+
+    /**
+     * 占位符 格式化字符串 形如：我的姓名：{0},我来自哪儿:{1}
+     * @param str
+     * @param arguments
+     * @return
+     */
+    public static String format(String str,Object... arguments){
+        if(isEmpty(str)){
+            return str;
+        }
+        String placeholder = String.valueOf(RandomUtil.createSnowflakeId());
+        str = str.replaceAll("\\{}",placeholder);
+        return MessageFormat.format(str,arguments).replaceAll(placeholder,"{}");
+    }
     //endregion
 
     //region 获取字符串的长度
@@ -291,9 +307,7 @@ public class StringUtil {
     //endregion
 
     public static void main(String[] args) {
-        System.out.println(formatMoney(1113398447.49,0));
-        BigDecimal d= new BigDecimal("56719338.55");
-        System.out.println(formatMoney(d,1));
+
     }
 
 }
