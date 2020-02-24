@@ -1,4 +1,4 @@
-package utils;
+package com.heqilin.util;
 
 import com.heqilin.util.StringUtil;
 import org.junit.Test;

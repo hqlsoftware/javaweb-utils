@@ -1,4 +1,4 @@
-package utils;
+package com.heqilin.util;
 
 import com.heqilin.util.DateUtil;
 import org.junit.Test;

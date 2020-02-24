@@ -1,4 +1,4 @@
-package json;
+package com.heqilin.util.json;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

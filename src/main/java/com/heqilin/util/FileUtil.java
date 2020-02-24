@@ -82,13 +82,13 @@ public class FileUtil {
                 file.createNewFile();
             FileOutputStream out = new FileOutputStream(file); //true表示追加
             StringBuffer sb = new StringBuffer();
-            sb.append(str + SystemUtil.getSystemProperty(SystemUtil.TYPE.LINE_SEPARATOR));
+            sb.append(str + System.lineSeparator());
             out.write(sb.toString().getBytes("utf-8"));
             out.close();
         }
         catch(IOException ex)
         {
-            System.out.println(ex.getStackTrace());
+            LogUtil.error(null,ex);
         }
     }
     //endregion
@@ -188,8 +188,8 @@ public class FileUtil {
             }
             copyURLToFile(httpurl, new File(dir+File.separator+fileName));
             return dir+File.separator+fileName;
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            LogUtil.error(null,ex);
             return "";
         }
     }
@@ -213,6 +213,30 @@ public class FileUtil {
         return downloadHttpUrl(url,null,null);
     }
 
+    //endregion
+
+    //region 读取txt文件内容
+
+    /**
+     * 读取txt内容
+     * @param filePath
+     * @return
+     */
+    public static String getFileContent(String filePath) {
+        File file = new File(filePath);
+        StringBuilder result = new StringBuilder();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));// 构造一个BufferedReader类来读取文件
+            String s = null;
+            while ((s = br.readLine()) != null) {// 使用readLine方法，一次读一行
+                result.append(s + System.lineSeparator());
+            }
+            br.close();
+        } catch (Exception ex) {
+            LogUtil.error(null,ex);
+        }
+        return result.toString();
+    }
     //endregion
 
 }

@@ -2,6 +2,8 @@ package com.heqilin.util;
 
 import lombok.extern.slf4j.Slf4j;
 import java.io.File;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 /**
  *
@@ -12,6 +14,7 @@ import java.io.File;
 
 @Slf4j
 public class LogUtil {
+
     //region 往文件中写入日志
     /**
      * 往文件中写入日志
@@ -35,58 +38,74 @@ public class LogUtil {
 
     //region log 内置方法
 
+    private static void handleArguments(BiConsumer<String,Throwable> throwableConsumer,String message, Object... args){
+        if(args!=null && args.length>0){
+            message = StringUtil.format(message,args);
+            if(args[args.length-1] instanceof Throwable){
+                throwableConsumer.accept(message,(Throwable) args[args.length-1]);
+            }else{
+                throwableConsumer.accept(message,null);
+            }
+        }else{
+            throwableConsumer.accept(message,null);
+        }
+    }
+
     /**
-     * trace 占位符号 {0},{1} 要这种风格才可以被识别
+     * trace 占位符号 {0},{1} 要这种风格才可以被识别，注意最后一个参数如果是 throwable ,则会输出异常堆栈
      **/
     public static void trace(String message,Object... args){
         if(log.isTraceEnabled()){
-            log.trace(StringUtil.format(message,args));
+            handleArguments((msg,throwable)->{
+                log.trace(msg,throwable);
+            },message,args);
         }
     }
 
     /**
-     * debug 占位符号 {0},{1} 要这种风格才可以被识别
+     * debug 占位符号 {0},{1} 要这种风格才可以被识别，注意最后一个参数如果是 throwable ,则会输出异常堆栈
      **/
     public static void debug(String message,Object... args){
         if(log.isDebugEnabled()){
-            log.debug(StringUtil.format(message,args));
+            handleArguments((msg,throwable)->{
+                log.debug(msg,throwable);
+            },message,args);
         }
     }
 
     /**
-     * info 占位符号 {0},{1} 要这种风格才可以被识别
+     * info 占位符号 {0},{1} 要这种风格才可以被识别，注意最后一个参数如果是 throwable ,则会输出异常堆栈
      **/
     public static void info(String message,Object... args){
         if(log.isInfoEnabled()){
-            log.info(StringUtil.format(message,args));
+            handleArguments((msg,throwable)->{
+                log.info(msg,throwable);
+            },message,args);
         }
     }
 
     /**
-     * warm 占位符号 {0},{1} 要这种风格才可以被识别
+     * warm 占位符号 {0},{1} 要这种风格才可以被识别，注意最后一个参数如果是 throwable ,则会输出异常堆栈
      **/
-    public static void warm(String message,Object... args){
+    public static void warn(String message,Object... args){
         if(log.isWarnEnabled()){
-            log.warn(StringUtil.format(message,args));
+            handleArguments((msg,throwable)->{
+                log.warn(msg,throwable);
+            },message,args);
         }
     }
 
     /**
-     * error 占位符号 {0},{1} 要这种风格才可以被识别
+     * error 占位符号 {0},{1} 要这种风格才可以被识别，注意最后一个参数如果是 throwable ,则会输出异常堆栈
      **/
     public static void error(String message,Object... args){
         if(log.isErrorEnabled()){
-            log.error(StringUtil.format(message,args));
+            handleArguments((msg,throwable)->{
+                log.error(msg,throwable);
+            },message,args);
         }
     }
 
     //endregion
-
-    public static void main(String[] args) {
-        System.out.println(SystemUtil.getProjectClassesPath());
-        System.out.println(SystemUtil.getMyUtilConfigPath());
-        System.out.println(SystemUtil.getProjectPath());
-        info("aaaa:{0},affafds:{1}","heqilin","china");
-    }
 
 }

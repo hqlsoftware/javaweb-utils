@@ -307,7 +307,7 @@ public class StringUtil {
     //endregion
 
     public static void main(String[] args) {
-
+        System.out.println(format("fafafas","fa"));
     }
 
 }
