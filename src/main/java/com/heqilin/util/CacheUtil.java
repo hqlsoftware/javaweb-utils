@@ -10,7 +10,7 @@ import com.heqilin.util.plugin.cache.ICache;
  * date:  2018-12-26 ok
  **/
 public class CacheUtil {
-    public static ICache instance = CacheFactory.create(null);
+    public static final ICache INSTANCE = getCacheClient(null);
 
     /**
      * 获取自定义Cache客户端实现
@@ -18,6 +18,6 @@ public class CacheUtil {
      * @return
      */
     public  static  ICache getCacheClient(String cacheType){
-        return  CacheFactory.create(cacheType);
+        return  CacheFactory.newInstance(cacheType);
     }
 }

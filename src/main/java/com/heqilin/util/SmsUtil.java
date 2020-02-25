@@ -9,7 +9,7 @@ import com.heqilin.util.plugin.sms.SmsFactory;
  * date 2019/04/23
  */
 public class SmsUtil {
-    public static ISms instance = SmsFactory.create(null);
+    public static final ISms INSTANCE = getCacheClient(null);
 
     /**
      * 获取自定义Sms客户端实现
@@ -17,6 +17,6 @@ public class SmsUtil {
      * @return
      */
     public  static  ISms getCacheClient(String smsType){
-        return  SmsFactory.create(smsType);
+        return  SmsFactory.newInstance(smsType);
     }
 }

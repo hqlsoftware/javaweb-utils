@@ -10,24 +10,26 @@ import com.heqilin.util.SystemUtil;
  * date 2019/04/23
  */
 public class SmsFactory {
-    public static String smsType = PropUtil.getProp(SystemUtil.getMyUtilConfigPath())
+    public static final String smsType = PropUtil.getProp(SystemUtil.getMyUtilConfigPath())
             .getProperty("my.util.smsutil.smsType");
 
     private SmsFactory(){
         throw new AssertionError();
     }
 
-    public  static ISms create(String smsTypeIfNullReadConfigValue){
+    public  static ISms newInstance(String smsTypeIfNullReadConfigValue){
         if(StringUtil.isEmpty(smsTypeIfNullReadConfigValue))
             smsTypeIfNullReadConfigValue= smsType;
 
         switch (smsTypeIfNullReadConfigValue){
+            case "default":
+                return new JuheSmsImpl();
             case "juhe":
                 return new JuheSmsImpl();
             case "aliyun":
                 return  new AliyunSmsImpl();
             default:
-                return new JuheSmsImpl();
+                return null;
         }
     }
 

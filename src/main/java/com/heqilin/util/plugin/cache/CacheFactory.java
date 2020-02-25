@@ -11,29 +11,30 @@ import com.heqilin.util.SystemUtil;
  * date:  2019-01-15 ok
  **/
 public class CacheFactory {
-    public static String cacheType = PropUtil.getProp(SystemUtil.getMyUtilConfigPath())
+    public static final String cacheType = PropUtil.getProp(SystemUtil.getMyUtilConfigPath())
             .getProperty("my.util.cacheutil.cacheType");
 
-    private CacheFactory(){
+    private CacheFactory() {
         throw new AssertionError();
     }
 
-    public  static ICache create(String cacheTypeIfNullReadConfigValue){
-        if(StringUtil.isEmpty(cacheTypeIfNullReadConfigValue))
-            cacheTypeIfNullReadConfigValue= cacheType;
+    public static ICache newInstance(String cacheTypeIfNullReadConfigValue) {
+        if (StringUtil.isEmpty(cacheTypeIfNullReadConfigValue))
+            cacheTypeIfNullReadConfigValue = cacheType;
 
-        switch (cacheTypeIfNullReadConfigValue){
+        switch (cacheTypeIfNullReadConfigValue) {
             case "default":
-                return new JedisImpl();
+                return new EhCacheImpl();
             case "redis":
                 return new JedisImpl();
-            default:
+            case "memcached":
                 return new MemcachedImpl();
+            default:
+                return null;
         }
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         System.out.println(cacheType);
     }
 }

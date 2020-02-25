@@ -11,22 +11,24 @@ import com.heqilin.util.SystemUtil;
  * date:  2019-01-15 ok
  **/
 public class JsonFactory {
-    public static String jsonType = PropUtil.getProp(SystemUtil.getMyUtilConfigPath())
+    public static final String jsonType = PropUtil.getProp(SystemUtil.getMyUtilConfigPath())
             .getProperty("my.util.jsonutil.jsonType");
 
     private JsonFactory(){
         throw new AssertionError();
     }
 
-    public  static IJson create(String jsonTypeIfNullReadConfigValue){
+    public  static IJson newInstance(String jsonTypeIfNullReadConfigValue){
         if(StringUtil.isEmpty(jsonTypeIfNullReadConfigValue))
             jsonTypeIfNullReadConfigValue= jsonType;
 
         switch (jsonTypeIfNullReadConfigValue){
             case "default":
                 return new JackonImpl();
-            default:
+            case "jackon":
                 return new JackonImpl();
+            default:
+                return null;
         }
     }
 
