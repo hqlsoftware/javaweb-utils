@@ -11,7 +11,7 @@ import com.heqilin.util.SystemUtil;
  * date:  2019-01-15 ok
  **/
 public class JsonFactory {
-    public static final String jsonType = PropUtil.getProp(SystemUtil.getMyUtilConfigPath())
+    public static final String JSON_TYPE = PropUtil.getProp(SystemUtil.getMyUtilConfigPath())
             .getProperty("my.util.jsonutil.jsonType");
 
     private JsonFactory(){
@@ -20,7 +20,7 @@ public class JsonFactory {
 
     public  static IJson newInstance(String jsonTypeIfNullReadConfigValue){
         if(StringUtil.isEmpty(jsonTypeIfNullReadConfigValue))
-            jsonTypeIfNullReadConfigValue= jsonType;
+            jsonTypeIfNullReadConfigValue= JSON_TYPE;
 
         switch (jsonTypeIfNullReadConfigValue){
             case "default":
@@ -34,6 +34,6 @@ public class JsonFactory {
 
     public static void main(String[] args)
     {
-        System.out.println(jsonType);
+        System.out.println(JSON_TYPE);
     }
 }

@@ -12,6 +12,10 @@ import java.util.Date;
  **/
 public class FileUtil {
 
+    private FileUtil(){
+        throw new AssertionError();
+    }
+
     //region 文件的常用操作 （创建/删除/重命名/是否存在）
     /**
      * 创建文件

@@ -10,6 +10,10 @@ import com.heqilin.util.plugin.cache.ICache;
  * date:  2018-12-26 ok
  **/
 public class CacheUtil {
+    private CacheUtil(){
+        throw new AssertionError();
+    }
+
     public static final ICache INSTANCE = getCacheClient(null);
 
     /**

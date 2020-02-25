@@ -22,7 +22,7 @@ public class Result {
     protected Object data;
 
     public String toString() {
-        return JsonUtil.instance.toJson(this);
+        return JsonUtil.INSTANCE.toJson(this);
     }
 
     public Result(int code, String message, Object data) {

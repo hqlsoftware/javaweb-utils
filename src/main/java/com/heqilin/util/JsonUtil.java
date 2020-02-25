@@ -10,14 +10,19 @@ import com.heqilin.util.plugin.json.JsonFactory;
  * date:  2018-12-26 ok
  **/
 public class JsonUtil {
-    public static final IJson INSTANCE = getCacheClient(null);
+
+    private JsonUtil(){
+        throw new AssertionError();
+    }
+
+    public static final IJson INSTANCE = getJsonClient(null);
 
     /**
      * 获取自定义Json客户端实现
      * @param jsonType
      * @return
      */
-    public  static  IJson getCacheClient(String jsonType){
+    public  static  IJson getJsonClient(String jsonType){
         return  JsonFactory.newInstance(jsonType);
     }
 }

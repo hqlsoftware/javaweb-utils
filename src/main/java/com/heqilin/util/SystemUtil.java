@@ -12,6 +12,10 @@ import java.io.File;
  **/
 public class SystemUtil {
 
+    private SystemUtil(){
+        throw new AssertionError();
+    }
+
     //region 系统属性的静态枚举
 
     /**

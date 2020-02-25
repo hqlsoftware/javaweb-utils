@@ -14,6 +14,10 @@ import java.util.function.Supplier;
  **/
 public class TokenUtil {
 
+    private TokenUtil(){
+        throw new AssertionError();
+    }
+
     /**
      * 创建并保存Token
      *

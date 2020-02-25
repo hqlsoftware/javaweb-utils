@@ -21,7 +21,7 @@ public class ResultT<T> {
     protected T data;
 
     public String toString() {
-        return JsonUtil.instance.toJson(this);
+        return JsonUtil.INSTANCE.toJson(this);
     }
 
     public ResultT(int code, String message, T data) {

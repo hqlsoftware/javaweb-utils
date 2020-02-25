@@ -1,6 +1,6 @@
 package com.heqilin.util.json;
 
-import lombok.var;
+import com.heqilin.util.plugin.json.IJson;
 import com.heqilin.util.plugin.json.JsonFactory;
 import org.junit.Test;
 
@@ -10,8 +10,8 @@ public class JsonFactoryTest {
 
     @Test
     public void create() {
-        var instance =  JsonFactory.create(null);
+        IJson instance =  JsonFactory.newInstance(null);
         assertNotNull(instance);
-        assertEquals("default",JsonFactory.jsonType);
+        assertEquals("default",JsonFactory.JSON_TYPE);
     }
 }

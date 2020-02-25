@@ -15,6 +15,10 @@ import java.util.Base64;
  */
 public class AesUtil {
 
+    private AesUtil(){
+        throw new AssertionError();
+    }
+
     public static String encode(String content,String keyStr){
         try {
             //1.构造密钥生成器，指定为AES算法,不区分大小写

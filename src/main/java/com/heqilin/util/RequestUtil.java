@@ -25,6 +25,10 @@ import java.util.function.Function;
  **/
 public class RequestUtil {
 
+    private RequestUtil(){
+        throw new AssertionError();
+    }
+
     //region 获取目录
     /**
      * 获取Web根目录 /
@@ -279,6 +283,6 @@ public class RequestUtil {
         map.put("aaa","1111");
         map.put("bbb","2222");
         System.out.println(getQueryStringFromMap(map,x->"#"+x+"#"));
-        System.out.println(JsonUtil.instance.toJson(getMapFromQueryString("aaa=111111&bbb=44444")));
+        System.out.println(JsonUtil.INSTANCE.toJson(getMapFromQueryString("aaa=111111&bbb=44444")));
     }
 }

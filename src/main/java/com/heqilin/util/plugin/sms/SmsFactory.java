@@ -10,7 +10,7 @@ import com.heqilin.util.SystemUtil;
  * date 2019/04/23
  */
 public class SmsFactory {
-    public static final String smsType = PropUtil.getProp(SystemUtil.getMyUtilConfigPath())
+    public static final String SMS_TYPE = PropUtil.getProp(SystemUtil.getMyUtilConfigPath())
             .getProperty("my.util.smsutil.smsType");
 
     private SmsFactory(){
@@ -19,7 +19,7 @@ public class SmsFactory {
 
     public  static ISms newInstance(String smsTypeIfNullReadConfigValue){
         if(StringUtil.isEmpty(smsTypeIfNullReadConfigValue))
-            smsTypeIfNullReadConfigValue= smsType;
+            smsTypeIfNullReadConfigValue= SMS_TYPE;
 
         switch (smsTypeIfNullReadConfigValue){
             case "default":
@@ -35,6 +35,6 @@ public class SmsFactory {
 
     public static void main(String[] args)
     {
-        System.out.println(smsType);
+        System.out.println(SMS_TYPE);
     }
 }

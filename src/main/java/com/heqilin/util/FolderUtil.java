@@ -10,6 +10,10 @@ import java.io.File;
  **/
 public class FolderUtil {
 
+    private FolderUtil(){
+        throw new AssertionError();
+    }
+
     //region 文件夹常用操作(是否存在/创建/删掉/递归删掉/重命名/移动)
 
     /**

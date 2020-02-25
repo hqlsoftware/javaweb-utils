@@ -22,6 +22,6 @@ public class Token {
     private long expiresInSeconds;
 
     public String toString() {
-        return JsonUtil.instance.toJson(this);
+        return JsonUtil.INSTANCE.toJson(this);
     }
 }

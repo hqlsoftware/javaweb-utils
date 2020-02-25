@@ -9,6 +9,11 @@ import java.nio.charset.Charset;
  * date 2019/04/07
  */
 public class HexUtil {
+
+    private HexUtil(){
+        throw new AssertionError();
+    }
+
     /**
      *  * 用于建立十六进制字符的输出的小写字符数组
      *  

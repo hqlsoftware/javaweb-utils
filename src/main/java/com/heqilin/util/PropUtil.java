@@ -11,6 +11,11 @@ import java.util.Properties;
  * date:  2019-01-15 ok
  **/
 public class PropUtil {
+
+    private PropUtil(){
+        throw new AssertionError();
+    }
+
     /**
      * 解析properties文件
      * @param filePath

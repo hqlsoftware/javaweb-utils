@@ -17,10 +17,14 @@ import java.util.UUID;
  **/
 public class RandomUtil {
 
+    private RandomUtil(){
+        throw new AssertionError();
+    }
+
     /**
      * 静态随机数
      */
-    private static Random random = new Random();
+    private static final Random random = new Random();
 
     /**
      * 获取雪花id(唯一，可做主键，long类型)

@@ -20,6 +20,10 @@ import java.util.function.Supplier;
  */
 public class JwtTokenUtil {
 
+    private JwtTokenUtil(){
+        throw new AssertionError();
+    }
+
     private static String SECRET = PropUtil.getProp(SystemUtil.getMyUtilConfigPath())
             .getProperty("my.util.jwttokenutil.secret");
 
@@ -192,7 +196,7 @@ public class JwtTokenUtil {
             return ResultTUtil.errorWithNoneAuthorization(parseJwtTokenResult.getMessage());
         }
         Claims claims = parseJwtTokenResult.getData();
-        Token token = JsonUtil.instance.toBean(claims.getSubject(), Token.class);
+        Token token = JsonUtil.INSTANCE.toBean(claims.getSubject(), Token.class);
         if (token == null) {
             return ResultTUtil.errorWithNoneAuthorization("token格式不正确-subject格式不正确");
         }

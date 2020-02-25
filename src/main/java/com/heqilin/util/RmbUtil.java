@@ -8,6 +8,11 @@ import java.math.BigDecimal;
  * @description 转为中文金额格式
  */
 public class RmbUtil {
+
+    private RmbUtil(){
+        throw new AssertionError();
+    }
+
     /**
      * 汉语中数字大写
      */

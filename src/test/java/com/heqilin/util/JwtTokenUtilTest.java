@@ -41,7 +41,7 @@ public class JwtTokenUtilTest {
             if(claims==null){
                 return ResultUtil.errorWithNoneAuthorization();
             }
-            Token tokenOld = JsonUtil.instance.toBean(claims.getSubject(),Token.class);
+            Token tokenOld = JsonUtil.INSTANCE.toBean(claims.getSubject(),Token.class);
             if(tokenOld==null){
                 return  ResultUtil.errorWithNoneAuthorization();
             }

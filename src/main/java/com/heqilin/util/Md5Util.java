@@ -12,6 +12,10 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Md5Util {
 
+    private Md5Util(){
+        throw new AssertionError();
+    }
+
     /**
      * md5加密(全部小写)
      * @param text

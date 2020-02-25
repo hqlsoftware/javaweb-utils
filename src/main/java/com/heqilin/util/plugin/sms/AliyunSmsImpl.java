@@ -31,7 +31,7 @@ public class AliyunSmsImpl implements ISms {
     public Result send(String mobile, Map contentMap, String templateId, String signName) {
         String content = "";
         if(contentMap!=null && !contentMap.isEmpty()){
-            content = JsonUtil.instance.toJson(contentMap);
+            content = JsonUtil.INSTANCE.toJson(contentMap);
         }
         DefaultProfile profile = DefaultProfile.getProfile("default", prop.getProperty("my.util.plugin.sms.aliyunsms.key")
                 ,prop.getProperty("my.util.plugin.sms.aliyunsms.secret"));

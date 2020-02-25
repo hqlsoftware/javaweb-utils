@@ -13,6 +13,10 @@ import java.util.Map;
  */
 public class HttpUtil {
 
+    private HttpUtil(){
+        throw new AssertionError();
+    }
+
     public static OkHttpClient okHttpClient = new OkHttpClient();
 
     private static void setHeader(Request.Builder builder,Map<String,String> header){

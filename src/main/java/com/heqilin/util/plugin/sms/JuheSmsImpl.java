@@ -30,7 +30,7 @@ public class JuheSmsImpl implements ISms {
         map.put("dtype","json");
         map.put("tpl_id",templateId);
         map.put("tpl_value",content);
-        Map<String,Object> obj = JsonUtil.instance.toBean(HttpUtil.get(url,map,null),HashMap.class);
+        Map<String,Object> obj = JsonUtil.INSTANCE.toBean(HttpUtil.get(url,map,null),HashMap.class);
         if(Integer.parseInt(obj.get("error_code").toString())==0){
             return ResultUtil.success();
         }

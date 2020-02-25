@@ -15,6 +15,10 @@ import java.util.function.Consumer;
 @Slf4j
 public class LogUtil {
 
+    private LogUtil(){
+        throw new AssertionError();
+    }
+
     //region 往文件中写入日志
     /**
      * 往文件中写入日志

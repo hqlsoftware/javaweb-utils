@@ -14,6 +14,11 @@ import java.util.Base64;
  * date 2019/04/04
  */
 public class RsaUtil {
+
+    private RsaUtil(){
+        throw new AssertionError();
+    }
+
     /**
      * RSA最大加密明文大小
      */

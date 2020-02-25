@@ -16,6 +16,10 @@ import java.util.function.Function;
  **/
 public class LocalDateUtil {
 
+    private LocalDateUtil(){
+        throw new AssertionError();
+    }
+
     //region 常量
 
     /**

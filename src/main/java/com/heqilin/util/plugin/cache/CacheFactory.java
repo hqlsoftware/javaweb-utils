@@ -11,7 +11,7 @@ import com.heqilin.util.SystemUtil;
  * date:  2019-01-15 ok
  **/
 public class CacheFactory {
-    public static final String cacheType = PropUtil.getProp(SystemUtil.getMyUtilConfigPath())
+    public static final String CACHE_TYPE = PropUtil.getProp(SystemUtil.getMyUtilConfigPath())
             .getProperty("my.util.cacheutil.cacheType");
 
     private CacheFactory() {
@@ -20,7 +20,7 @@ public class CacheFactory {
 
     public static ICache newInstance(String cacheTypeIfNullReadConfigValue) {
         if (StringUtil.isEmpty(cacheTypeIfNullReadConfigValue))
-            cacheTypeIfNullReadConfigValue = cacheType;
+            cacheTypeIfNullReadConfigValue = CACHE_TYPE;
 
         switch (cacheTypeIfNullReadConfigValue) {
             case "default":
@@ -35,6 +35,6 @@ public class CacheFactory {
     }
 
     public static void main(String[] args) {
-        System.out.println(cacheType);
+        System.out.println(CACHE_TYPE);
     }
 }

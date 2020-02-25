@@ -11,6 +11,10 @@ import com.heqilin.util.model.ResultEnum;
  **/
 public class ResultUtil {
 
+    private ResultUtil(){
+        throw new AssertionError();
+    }
+
     //region 常用两种
     /**
      * 返回成功

@@ -19,6 +19,10 @@ import java.util.function.Function;
  */
 public class CaptchaUtil {
 
+    private CaptchaUtil(){
+        throw new AssertionError();
+    }
+
     /**
      *  获取动态验证码
      * @param response

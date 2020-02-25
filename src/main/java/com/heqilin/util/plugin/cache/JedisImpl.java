@@ -67,7 +67,7 @@ public class JedisImpl implements ICache {
         Jedis client = null;
         try{
             client = getClient();
-            client.set(cacheKey, JsonUtil.instance.toJson(cacheObj));
+            client.set(cacheKey, JsonUtil.INSTANCE.toJson(cacheObj));
         }finally {
             close(client);
         }
@@ -78,7 +78,7 @@ public class JedisImpl implements ICache {
         Jedis client = null;
         try{
             client = getClient();
-            client.set(cacheKey, JsonUtil.instance.toJson(cacheObj));
+            client.set(cacheKey, JsonUtil.INSTANCE.toJson(cacheObj));
             client.expire(cacheKey,(int)cacheSeconds);
         }finally {
             close(client);

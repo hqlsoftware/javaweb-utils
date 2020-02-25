@@ -8,6 +8,11 @@ import java.lang.reflect.Array;
  * @description 数组帮助类
  */
 public class ArrayUtil {
+
+    private ArrayUtil(){
+        throw new AssertionError();
+    }
+
     /**
      * 生成泛型数组
      * @param componentType

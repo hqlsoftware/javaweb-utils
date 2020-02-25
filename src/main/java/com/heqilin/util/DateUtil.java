@@ -20,6 +20,10 @@ import java.util.function.Function;
  **/
 public class DateUtil {
 
+    private DateUtil(){
+        throw new AssertionError();
+    }
+
     //region 常量
     /**
      * yyyy-MM-dd HH:mm:ss

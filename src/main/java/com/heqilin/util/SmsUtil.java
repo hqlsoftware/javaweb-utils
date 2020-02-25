@@ -9,6 +9,11 @@ import com.heqilin.util.plugin.sms.SmsFactory;
  * date 2019/04/23
  */
 public class SmsUtil {
+
+    private SmsUtil(){
+        throw new AssertionError();
+    }
+
     public static final ISms INSTANCE = getCacheClient(null);
 
     /**

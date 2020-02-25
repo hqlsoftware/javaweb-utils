@@ -16,6 +16,10 @@ import java.util.stream.Collectors;
  **/
 public class EnumUtil {
 
+    private EnumUtil(){
+        throw new AssertionError();
+    }
+
     /**
      * 获取下拉列表数据(枚举表中)
      * @param enumInstance

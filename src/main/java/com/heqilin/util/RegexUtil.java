@@ -9,6 +9,10 @@ import java.util.regex.Pattern;
  **/
 public class RegexUtil {
 
+    private RegexUtil(){
+        throw new AssertionError();
+    }
+
     //region 常量
 
     /**

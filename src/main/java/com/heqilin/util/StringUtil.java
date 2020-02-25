@@ -15,6 +15,10 @@ import java.text.MessageFormat;
  **/
 public class StringUtil {
 
+    private StringUtil(){
+        throw new AssertionError();
+    }
+
     public static final String EMPTY = "";
 
     //region encode/decode
