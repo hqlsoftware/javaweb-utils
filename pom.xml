@@ -89,6 +89,7 @@
         <agentutils.version>1.20</agentutils.version>
         <okhttp3.version>3.14.1</okhttp3.version>
         <lombok.version>1.18.4</lombok.version>
+        <jwt.version>0.9.1</jwt.version>
     </properties>
     <dependencies>
         <dependency>
@@ -192,6 +193,13 @@
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy</artifactId>
             <version>1.10.8</version>
+            <scope>provided</scope>
+        </dependency>
+        <!--JWT-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jwt.version}</version>
             <scope>provided</scope>
         </dependency>
         <!--Test-->

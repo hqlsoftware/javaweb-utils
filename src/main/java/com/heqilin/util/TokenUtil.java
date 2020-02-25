@@ -35,14 +35,14 @@ public class TokenUtil {
      * @param request
      * @return
      */
-    public static Result validateToken(HttpServletRequest request, String attributeName, Function<Token,? extends Token> func){
+    public static Result validateToken(HttpServletRequest request, String attributeName, Function<Token,? extends Token> getTokenFromCache){
         Token token = getToken(request);
         if(token==null)
             return ResultUtil.errorWithNoneAuthorization();
         if(StringUtil.isEmpty(token.getOpenId())
                 || StringUtil.isEmpty(token.getToken()))
             return ResultUtil.errorWithNoneAuthorization("token/openId不全");
-        Token tokenCache = func.apply(token);
+        Token tokenCache = getTokenFromCache.apply(token);
         if(tokenCache==null)
             return ResultUtil.errorWithNoneAuthorization("服务器缓存已失效");
         if(!token.getToken().equals(tokenCache.getToken()))

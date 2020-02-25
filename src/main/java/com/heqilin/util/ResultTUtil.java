@@ -1,6 +1,6 @@
 package com.heqilin.util;
 
-import com.heqilin.util.model.Result;
+import com.heqilin.util.model.ResultT;
 import com.heqilin.util.model.ResultEnum;
 
 /**
@@ -9,29 +9,29 @@ import com.heqilin.util.model.ResultEnum;
  * @author heqilin
  * date:  2019-01-15 ok
  **/
-public class ResultUtil {
+public class ResultTUtil {
 
     //region 常用两种
     /**
      * 返回成功
      **/
-    public static Result success(Object data) {
-        return new Result().setData(data);
+    public static <T> ResultT success(T data) {
+        return new ResultT().setData(data);
     }
 
-    public static Result success() {
+    public static <T> ResultT success() {
         return success(null);
     }
     /**
      * 返回失败
      **/
-    public static Result error(int code, String msg, Object data) {
-        return new Result()
+    public static <T> ResultT error(int code, String msg, T data) {
+        return new ResultT()
                 .setCode(code)
                 .setMessage(msg)
                 .setData(data);
     }
-    public static Result error(int code, String msg) {
+    public static ResultT error(int code, String msg) {
         return error(code,msg,null);
     }
     //endregion
@@ -41,40 +41,40 @@ public class ResultUtil {
     /**
      * 基本参数不能为空
      **/
-    public static Result errorWithInvalidParamer() {
+    public static ResultT errorWithInvalidParamer() {
         return error(ResultEnum.ErrorWithInvalidParamer.getCode(),ResultEnum.ErrorWithInvalidParamer.getMessage());
     }
-    public static Result errorWithInvalidParamer(String msg) {
+    public static ResultT errorWithInvalidParamer(String msg) {
         return error(ResultEnum.ErrorWithInvalidParamer.getCode(),StringUtil.isEmpty(msg)?ResultEnum.ErrorWithInvalidParamer.getMessage():msg);
     }
 
     /**
      * 本次操作失败，请重试
      **/
-    public static Result errorWithOperationFailed() {
+    public static ResultT errorWithOperationFailed() {
         return error(ResultEnum.ErrorWithOperationFailed.getCode(),ResultEnum.ErrorWithOperationFailed.getMessage());
     }
-    public static Result errorWithOperationFailed(String msg) {
+    public static ResultT errorWithOperationFailed(String msg) {
         return error(ResultEnum.ErrorWithOperationFailed.getCode(),StringUtil.isEmpty(msg)?ResultEnum.ErrorWithOperationFailed.getMessage():msg);
     }
 
     /**
      * 未授权，无法访问
      **/
-    public static Result errorWithNoneAuthorization() {
+    public static ResultT errorWithNoneAuthorization() {
         return error(ResultEnum.ErrorWithNoneAuthorization.getCode(),ResultEnum.ErrorWithNoneAuthorization.getMessage());
     }
-    public static Result errorWithNoneAuthorization(String msg) {
+    public static ResultT errorWithNoneAuthorization(String msg) {
         return error(ResultEnum.ErrorWithNoneAuthorization.getCode(),StringUtil.isEmpty(msg)?ResultEnum.ErrorWithNoneAuthorization.getMessage():msg);
     }
 
     /**
      * 权限不足，无法访问
      **/
-    public static Result errorWithAuthorizationDenied() {
+    public static ResultT errorWithAuthorizationDenied() {
         return error(ResultEnum.ErrorWithAuthorizationDenied.getCode(),ResultEnum.ErrorWithAuthorizationDenied.getMessage());
     }
-    public static Result errorWithAuthorizationDenied(String msg) {
+    public static ResultT errorWithAuthorizationDenied(String msg) {
         return error(ResultEnum.ErrorWithAuthorizationDenied.getCode(),StringUtil.isEmpty(msg)?ResultEnum.ErrorWithAuthorizationDenied.getMessage():msg);
     }
 

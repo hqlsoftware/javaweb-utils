@@ -1,10 +1,10 @@
 package com.heqilin.util.model;
 
+import com.heqilin.util.JsonUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-import com.heqilin.util.JsonUtil;
 
 /**
  * 接口返回结果
@@ -15,36 +15,42 @@ import com.heqilin.util.JsonUtil;
 @Data
 @Accessors(chain = true)
 @NoArgsConstructor
-public class Result {
+public class ResultT<T> {
 
     private int code=200;
     private String message="操作成功";
-    protected Object data;
+    protected T data;
 
     public String toString() {
         return JsonUtil.instance.toJson(this);
     }
 
-    public Result(int code, String message, Object data) {
+    public ResultT(int code, String message, T data) {
         this.code = code;
         this.message = message;
         this.data = data;
     }
 
-    public Result(String message, Object data) {
+    public ResultT(String message, T data) {
         this.message = message;
         this.data = data;
     }
 
-    public Result(String message) {
+    public ResultT(String message) {
         this.message = message;
     }
 
-    public Result(Object data) {
+    public ResultT(T data) {
         this.data = data;
     }
 
     public boolean isSuccess(){
         return this.code==200;
+    }
+
+    public Result toResult(){
+        return new Result().setCode(this.getCode())
+                .setMessage(this.getMessage())
+                .setData(this.getData());
     }
 }
