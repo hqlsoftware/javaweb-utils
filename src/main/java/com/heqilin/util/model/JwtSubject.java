@@ -1,5 +1,7 @@
 package com.heqilin.util.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.heqilin.util.JsonUtil;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -15,6 +17,8 @@ import lombok.experimental.Accessors;
 public class JwtSubject {
     private String openId;
     private String loginType;
+    @JsonSerialize(using = ToStringSerializer.class)
+    private long expiresInSeconds;
 
     public String toString() {
         return JsonUtil.instance.toJson(this);

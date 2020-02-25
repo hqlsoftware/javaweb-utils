@@ -1,7 +1,6 @@
 package com.heqilin.util.model;
 
 import com.heqilin.util.JsonUtil;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;

@@ -5,6 +5,7 @@ import com.heqilin.util.model.Result;
 import com.heqilin.util.model.ResultT;
 import com.heqilin.util.model.Token;
 import io.jsonwebtoken.*;
+import io.jsonwebtoken.lang.Assert;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -28,17 +29,19 @@ public class JwtTokenUtil {
         }
     }
 
+    //region 通用方法
+
     /**
      * 用户登录成功后生成Jwt Token
      * 通用的
      * 使用Hs256算法  私匙使用配置文件中的密码
      *
-     * @param expMilliSeconds  jwt过期时间
+     * @param expiresInSeconds jwt过期时间
      * @param setSubject       创建签发人(JWT的主体) 这个是一个json格式的字符串
      * @param setPriviteClaims 创建payload的私有声明(可为空)
      * @return
      */
-    public static String createTokenUniversal(long expMilliSeconds, Supplier<String> setSubject, Supplier<Map<String, Object>> setPriviteClaims) {
+    public static String createTokenUniversal(long expiresInSeconds, Supplier<String> setSubject, Supplier<Map<String, Object>> setPriviteClaims) {
         //指定签名的时候使用的签名算法，也就是header那部分，jjwt已经将这部分内容封装好了。
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 
@@ -76,31 +79,13 @@ public class JwtTokenUtil {
                 //设置签名使用的签名算法和签名使用的秘钥
                 .signWith(signatureAlgorithm, key);
 
-        if (expMilliSeconds > 0) {
-            long expMillis = nowMillis + expMilliSeconds;
+        if (expiresInSeconds > 0) {
+            long expMillis = nowMillis + expiresInSeconds * 1000;
             Date exp = new Date(expMillis);
             //设置过期时间
             builder.setExpiration(exp);
         }
         return builder.compact();
-    }
-
-    /**
-     * 用户登录成功后生成Jwt Token
-     * 使用Hs256算法  私匙使用配置文件中的密码
-     *
-     * @param expMilliSeconds  jwt过期时间
-     * @param setSubject       创建签发人(JWT的主体) 这个是一个json格式的字符串
-     * @return
-     */
-    public static String createToken(long expMilliSeconds, Supplier<JwtSubject> setSubject) {
-        return createTokenUniversal(expMilliSeconds,()->{
-            if(setSubject==null){
-                return null;
-            }else{
-                return setSubject.get().toString();
-            }
-        },null);
     }
 
     /**
@@ -110,8 +95,7 @@ public class JwtTokenUtil {
      * @return
      */
     private static ResultT<Claims> parseJwtToken(String token) {
-        try
-        {
+        try {
             //签名秘钥，和生成的签名的秘钥一模一样
             String key = SECRET;
             //得到DefaultJwtParser
@@ -121,11 +105,12 @@ public class JwtTokenUtil {
                     //设置需要解析的jwt
                     .parseClaimsJws(token).getBody();
             return ResultTUtil.success(claims);
-        }catch (Exception ex){
-            LogUtil.error("解析JwtToken出现异常：{0}",ex.getMessage());
+        } catch (ExpiredJwtException ex) {
+            return ResultTUtil.errorWithNoneAuthorization("JwtToken已过期");
+        } catch (Exception ex) {
+            LogUtil.error("解析JwtToken出现异常：{0}", ex.getMessage());
             return ResultTUtil.errorWithNoneAuthorization(ex.getMessage());
         }
-
     }
 
     /**
@@ -145,13 +130,48 @@ public class JwtTokenUtil {
         return checkTokenRule.apply(parseJwtTokenResult.getData());
     }
 
+    //endregion
+
+    // region Token调用三步骤
+
+    /**
+     * 用户登录成功后生成Jwt Token
+     * 使用Hs256算法  私匙使用配置文件中的密码
+     *
+     * @param setSubject 创建签发人(JWT的主体) 这个是一个json格式的字符串
+     * @return
+     */
+    public static <T extends Token> T createToken(Supplier<JwtSubject> setSubject, Function<Token, T> saveTokenToCache) {
+        if (setSubject == null || saveTokenToCache == null) {
+            return null;
+        }
+        JwtSubject jwtSubject = setSubject.get();
+        String tokenStr = createTokenUniversal(jwtSubject.getExpiresInSeconds(), () -> {
+            if (setSubject == null) {
+                return null;
+            } else {
+                return setSubject.get().toString();
+            }
+        }, null);
+        if (StringUtil.isEmpty(tokenStr)) {
+            return null;
+        }
+        Token token = new Token().setToken(tokenStr)
+                .setLoginType(jwtSubject.getLoginType())
+                .setOpenId(jwtSubject.getOpenId())
+                .setExpiresInSeconds(jwtSubject.getExpiresInSeconds());
+
+        return saveTokenToCache.apply(token);
+    }
+
     /**
      * 从header获取token实体
+     *
      * @param request
      * @return Token
      */
-    public static Token getToken(HttpServletRequest request){
-        if(request==null)
+    public static Token getToken(HttpServletRequest request) {
+        if (request == null)
             return null;
         return new Token()
                 .setToken(request.getHeader("token"));
@@ -159,30 +179,33 @@ public class JwtTokenUtil {
 
     /**
      * 验证Token
-     * @param request
+     *
+     * @param tokenHeader
+     * @param getTokenFromCache
      * @return
      */
-    public static Result validateToken(HttpServletRequest request, String attributeName, Function<Token,? extends Token> getTokenFromCache){
-        Token tokenHeader = getToken(request);
-        if(tokenHeader==null)
-            return ResultUtil.errorWithNoneAuthorization();
+    public static <T extends Token> ResultT<T> validateToken(Token tokenHeader, Function<Token, T> getTokenFromCache) {
+        if (tokenHeader == null)
+            return ResultTUtil.errorWithNoneAuthorization();
         ResultT<Claims> parseJwtTokenResult = parseJwtToken(tokenHeader.getToken());
-        if(!parseJwtTokenResult.isSuccess()){
-            return parseJwtTokenResult.toResult();
+        if (!parseJwtTokenResult.isSuccess()) {
+            return ResultTUtil.errorWithNoneAuthorization(parseJwtTokenResult.getMessage());
         }
         Claims claims = parseJwtTokenResult.getData();
-        Token token = JsonUtil.instance.toBean(claims.getSubject(),Token.class);
-        if(token==null){
-            return ResultUtil.errorWithNoneAuthorization("token格式不正确-subject信息不正确");
+        Token token = JsonUtil.instance.toBean(claims.getSubject(), Token.class);
+        if (token == null) {
+            return ResultTUtil.errorWithNoneAuthorization("token格式不正确-subject格式不正确");
         }
-        if(StringUtil.isEmpty(token.getOpenId()))
-            return ResultUtil.errorWithNoneAuthorization("token格式不正确-openId不全");
+        if (StringUtil.isEmpty(token.getOpenId()))
+            return ResultTUtil.errorWithNoneAuthorization("token格式不正确-subject信息不正确");
         Token tokenCache = getTokenFromCache.apply(token);
-        if(tokenCache==null)
-            return ResultUtil.errorWithNoneAuthorization("服务器缓存已失效");
-        if(!tokenHeader.getToken().equals(tokenCache.getToken()))
-            return ResultUtil.errorWithNoneAuthorization("token不一致");
-        request.setAttribute(attributeName,tokenCache);
-        return ResultUtil.success(tokenCache);
+        if (tokenCache == null)
+            return ResultTUtil.errorWithNoneAuthorization("服务器缓存已失效");
+        if (!tokenHeader.getToken().equals(tokenCache.getToken()))
+            return ResultTUtil.errorWithNoneAuthorization("token已失效");
+        return ResultTUtil.success(tokenCache);
     }
+
+    //endregion
+
 }
