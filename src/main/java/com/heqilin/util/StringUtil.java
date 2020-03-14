@@ -48,11 +48,98 @@ public class StringUtil {
     }
     //endregion
 
+    //region 是否为空/不为空
+    /**
+     * 是否不为空
+     * @param str
+     * @return
+     */
+    public static boolean isNotEmpty(CharSequence str) {
+        return (str != null && str.length() > 0);
+    }
+
+    /**
+     * 是否不为空
+     * @param str
+     * @return
+     */
+    public static boolean isNotEmpty(String str) {
+        return isNotEmpty((CharSequence) str);
+    }
+
     /**
      * 是否不为空
      **/
     public static boolean isNotEmpty(Object str) {
         return str != null && !"".equals(str.toString().trim());
+    }
+
+    /**
+     * 是否不为空（排除空白字符）
+     * @param str
+     * @return
+     */
+    public static boolean isNotBlank(CharSequence str) {
+        if (isEmpty(str)) {
+            return false;
+        }
+        int strLen = str.length();
+        for (int i = 0; i < strLen; i++) {
+            if (!Character.isWhitespace(str.charAt(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 是否不为空-不为空白字符
+     * @param str
+     * @return
+     */
+    public static boolean isNotBlank(String str) {
+        return isNotBlank((CharSequence) str);
+    }
+
+    /**
+     * 是否包含空白字符
+     * @param str
+     * @return
+     */
+    public static boolean containsWhitespace(CharSequence str) {
+        if (!isNotEmpty(str)) {
+            return false;
+        }
+        int strLen = str.length();
+        for (int i = 0; i < strLen; i++) {
+            if (Character.isWhitespace(str.charAt(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 是否包含空白字符
+     * @param str
+     * @return
+     */
+    public static boolean containsWhitespace(String str) {
+        return containsWhitespace((CharSequence) str);
+    }
+
+    /**
+     * 是否为空/空白字符
+     **/
+    public static boolean isBlank(String str) {
+        return !isNotBlank(str);
+    }
+
+    /**
+     * 是否为空
+     **/
+    public static boolean isEmpty(String str) {
+        return str == null || str.length()<=0;
     }
 
     /**
@@ -101,6 +188,9 @@ public class StringUtil {
         return false;
     }
 
+    //endregion
+
+    //region replace
     /**
      * 重复N个字符
      **/
@@ -119,11 +209,142 @@ public class StringUtil {
         String replaceStr = str.substring(startIndex, startIndex + length);
         return str.replace(replaceStr, repeatNStr(length, replaceChar));
     }
+    //endregion
 
     //region 去掉首尾字符串前缀和后缀
 
     /**
-     * 去掉前缀字符
+     * 是否以什么字符开头（忽略大小写）
+     * @param str
+     * @param prefix
+     * @return
+     */
+    public static boolean startsWithIgnoreCase(String str, String prefix) {
+        if (str == null || prefix == null) {
+            return false;
+        }
+        if (str.startsWith(prefix)) {
+            return true;
+        }
+        if (str.length() < prefix.length()) {
+            return false;
+        }
+        String lcStr = str.substring(0, prefix.length()).toLowerCase();
+        String lcPrefix = prefix.toLowerCase();
+        return lcStr.equals(lcPrefix);
+    }
+
+    /**
+     * 是否以什么字符结束（忽略大小写）
+     * @param str
+     * @param suffix
+     * @return
+     */
+    public static boolean endsWithIgnoreCase(String str, String suffix) {
+        if (str == null || suffix == null) {
+            return false;
+        }
+        if (str.endsWith(suffix)) {
+            return true;
+        }
+        if (str.length() < suffix.length()) {
+            return false;
+        }
+
+        String lcStr = str.substring(str.length() - suffix.length()).toLowerCase();
+        String lcSuffix = suffix.toLowerCase();
+        return lcStr.equals(lcSuffix);
+    }
+
+    /**
+     * 移除前后空白字符
+     * @param str
+     * @return
+     */
+    public static String removeWhitespace(String str) {
+        return (String) removeWhitespace((CharSequence)str);
+    }
+
+    /**
+     * 移除前后空白字符
+     * @param str
+     * @return
+     */
+    private static CharSequence removeWhitespace(CharSequence str) {
+        if (!isNotEmpty(str)) {
+            return str;
+        }
+        final int length = str.length();
+
+        int start = 0;
+        while (start < length && Character.isWhitespace(str.charAt(start))) {
+            start++;
+        }
+
+        int end = length;
+        while (start < length && Character.isWhitespace(str.charAt(end - 1))) {
+            end--;
+        }
+
+        return ((start > 0) || (end < length)) ? str.subSequence(start, end) : str;
+    }
+
+    /**
+     * 移除所有的空白字符
+     * @param str
+     * @return
+     */
+    public static String removeAllWhitespace(String str) {
+        if (!isNotEmpty(str)) {
+            return str;
+        }
+        StringBuilder sb = new StringBuilder(str);
+        int index = 0;
+        while (sb.length() > index) {
+            if (Character.isWhitespace(sb.charAt(index))) {
+                sb.deleteCharAt(index);
+            }
+            else {
+                index++;
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * 移除前缀空白字符
+     * @param str
+     * @return
+     */
+    public static String removePrefixWhitespace(String str) {
+        if (!isNotEmpty(str)) {
+            return str;
+        }
+        StringBuilder sb = new StringBuilder(str);
+        while (sb.length() > 0 && Character.isWhitespace(sb.charAt(0))) {
+            sb.deleteCharAt(0);
+        }
+        return sb.toString();
+    }
+
+    /**
+     * 移除后缀空白字符
+     * @param str
+     * @return
+     */
+    public static String removeSuffixWhitespace(String str) {
+        if (!isNotEmpty(str)) {
+            return str;
+        }
+        StringBuilder sb = new StringBuilder(str);
+        while (sb.length() > 0 && Character.isWhitespace(sb.charAt(sb.length() - 1))) {
+            sb.deleteCharAt(sb.length() - 1);
+        }
+        return sb.toString();
+    }
+
+    /**
+     * 移除前缀字符
      **/
     public static String removePrefixString(String val, String str) {
         String strRegex = "^(" + str + ")";
@@ -131,7 +352,7 @@ public class StringUtil {
     }
 
     /**
-     * 去掉后缀字符
+     * 移除后缀字符
      **/
     public static String removeSuffixString(String val, String str) {
         String strRegex = "(" + str + ")" + "$";
