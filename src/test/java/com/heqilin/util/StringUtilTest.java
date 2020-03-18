@@ -1,9 +1,10 @@
 package com.heqilin.util;
 
 import com.heqilin.util.StringUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class StringUtilTest {
 
@@ -84,5 +85,12 @@ public class StringUtilTest {
         assertEquals(true,StringUtil.isOneEmpty(new String[]{"aa","","cc"}));
         assertEquals(true,StringUtil.isOneEmpty(new String[]{"aa",null,"cc"}));
         assertEquals(false,StringUtil.isOneEmpty(new String[]{"aa","dd","cc"}));
+    }
+
+    @Test
+    public void getIDCard(){
+        String card = "320123198501018790";
+        card = StringUtil.replaceNStar(card,4,11,"*");
+        assertEquals("3201***********790",card);
     }
 }

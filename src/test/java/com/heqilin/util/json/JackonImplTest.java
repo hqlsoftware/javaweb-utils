@@ -4,11 +4,11 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 import lombok.var;
 import com.heqilin.util.plugin.json.JackonImpl;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class JackonImplTest {
 

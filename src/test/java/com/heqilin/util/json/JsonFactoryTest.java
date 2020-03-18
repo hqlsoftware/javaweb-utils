@@ -2,9 +2,10 @@ package com.heqilin.util.json;
 
 import com.heqilin.util.plugin.json.IJson;
 import com.heqilin.util.plugin.json.JsonFactory;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class JsonFactoryTest {
 

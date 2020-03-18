@@ -6,12 +6,14 @@ import com.heqilin.util.model.ResultT;
 import com.heqilin.util.model.Token;
 import lombok.Data;
 import lombok.experimental.Accessors;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class JwtTokenUtilTest {
 

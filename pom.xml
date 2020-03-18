@@ -6,7 +6,7 @@
 
     <groupId>com.heqilin</groupId>
     <artifactId>utils</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
     <parent>
         <groupId>org.sonatype.oss</groupId>
@@ -86,10 +86,23 @@
         </plugins>
     </build>
     <properties>
-        <agentutils.version>1.20</agentutils.version>
-        <okhttp3.version>3.14.1</okhttp3.version>
-        <lombok.version>1.18.4</lombok.version>
+        <okhttp3.version>4.4.1</okhttp3.version>
+        <agentutils.version>1.21</agentutils.version>
+        <slf4j.version>1.7.30</slf4j.version>
+        <lombok.version>1.18.12</lombok.version>
+        <logback.version>1.2.3</logback.version>
+        <junit5.version>5.6.0</junit5.version>
+        <junit5.platform.version>1.6.0</junit5.platform.version>
         <jwt.version>0.9.1</jwt.version>
+        <jedis.version>3.2.0</jedis.version>
+        <ehcache.version>3.8.1</ehcache.version>
+        <spymemcached.version>2.12.3</spymemcached.version>
+        <jackson.version>2.10.3</jackson.version>
+        <swagger2.version>2.9.2</swagger2.version>
+        <poi.version>4.1.2</poi.version>
+        <servlet.version>4.0.1</servlet.version>
+        <aliyunsdk.version>4.5.0</aliyunsdk.version>
+        <bytebuddy.version>1.10.8</bytebuddy.version>
     </properties>
     <dependencies>
         <dependency>
@@ -114,85 +127,85 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <version>${servlet.version}</version>
             <scope>provided</scope>
         </dependency>
         <!--jackson-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>2.9.8</version>
+            <version>${jackson.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.9.8</version>
+            <version>${jackson.version}</version>
             <scope>provided</scope>
         </dependency>
         <!--缓存-->
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
-            <version>3.0.1</version>
+            <version>${jedis.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.ehcache</groupId>
             <artifactId>ehcache</artifactId>
-            <version>3.6.1</version>
+            <version>${ehcache.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>net.spy</groupId>
             <artifactId>spymemcached</artifactId>
-            <version>2.12.3</version>
+            <version>${spymemcached.version}</version>
             <scope>provided</scope>
         </dependency>
         <!-- logback 日志-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.25</version>
+            <version>${slf4j.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.2.3</version>
+            <version>${logback.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
-            <version>1.2.3</version>
+            <version>${logback.version}</version>
             <scope>provided</scope>
         </dependency>
         <!--阿里云-->
         <dependency>
             <groupId>com.aliyun</groupId>
             <artifactId>aliyun-java-sdk-core</artifactId>
-            <version>4.1.0</version>
+            <version>${aliyunsdk.version}</version>
             <scope>provided</scope>
         </dependency>
         <!--excel-->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
-            <version>3.17</version>
+            <version>${poi.version}</version>
             <scope>provided</scope>
         </dependency>
         <!--swagger2-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>2.9.2</version>
+            <version>${swagger2.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy</artifactId>
-            <version>1.10.8</version>
+            <version>${bytebuddy.version}</version>
             <scope>provided</scope>
         </dependency>
         <!--JWT-->
@@ -204,15 +217,15 @@
         </dependency>
         <!--Test-->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>${junit5.platform.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>RELEASE</version>
+            <version>${junit5.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
