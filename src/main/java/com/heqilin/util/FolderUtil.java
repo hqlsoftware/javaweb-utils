@@ -31,12 +31,12 @@ public class FolderUtil {
         File file=new File(folderPath);
         try {
             if (!file.exists()) {
-                file.mkdir();
+                file.mkdirs();
                 return true;
             }
             else{
                 if(!file.isDirectory()){
-                    file.mkdir();
+                    file.mkdirs();
                     return true;
                 }
             }

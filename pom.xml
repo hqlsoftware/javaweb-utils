@@ -100,9 +100,13 @@
         <jackson.version>2.10.3</jackson.version>
         <swagger2.version>2.9.2</swagger2.version>
         <poi.version>4.1.2</poi.version>
+        <easypoi.version>4.1.2</easypoi.version>
         <servlet.version>4.0.1</servlet.version>
         <aliyunsdk.version>4.5.0</aliyunsdk.version>
+        <aliyunsdk.oss.version>3.8.0</aliyunsdk.oss.version>
         <bytebuddy.version>1.10.8</bytebuddy.version>
+        <common.fileupload.version>1.4</common.fileupload.version>
+        <spring.web.version>5.2.5.RELEASE</spring.web.version>
     </properties>
     <dependencies>
         <dependency>
@@ -188,11 +192,34 @@
             <version>${aliyunsdk.version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+            <version>${aliyunsdk.oss.version}</version>
+        </dependency>
         <!--excel-->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>${poi.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>cn.afterturn</groupId>
+            <artifactId>easypoi-base</artifactId>
+            <version>${easypoi.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>cn.afterturn</groupId>
+            <artifactId>easypoi-web</artifactId>
+            <version>${easypoi.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>cn.afterturn</groupId>
+            <artifactId>easypoi-annotation</artifactId>
+            <version>${easypoi.version}</version>
             <scope>provided</scope>
         </dependency>
         <!--swagger2-->
@@ -214,6 +241,18 @@
             <artifactId>jjwt</artifactId>
             <version>${jwt.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <!--文件上传-->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>${common.fileupload.version}</version>
+        </dependency>
+        <!--Spring Web-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.web.version}</version>
         </dependency>
         <!--Test-->
         <dependency>

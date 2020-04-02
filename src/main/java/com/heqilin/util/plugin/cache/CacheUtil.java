@@ -1,4 +1,4 @@
-package com.heqilin.util;
+package com.heqilin.util.plugin.cache;
 
 import com.heqilin.util.plugin.cache.CacheFactory;
 import com.heqilin.util.plugin.cache.ICache;

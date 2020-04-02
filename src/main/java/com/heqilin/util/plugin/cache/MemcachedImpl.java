@@ -84,8 +84,7 @@ public class MemcachedImpl implements ICache {
     @Override
     public <T> T getCache(String cacheKey) {
         //return  JsonUtil.instance.toBean(client.get(cacheKey),tClass);
-        MemcachedSerializingTranscoder transcoder = new MemcachedSerializingTranscoder();
-        return (T)client.get(cacheKey,transcoder);
+        return (T)client.get(cacheKey);
     }
 
     public static void main(String[] args) {

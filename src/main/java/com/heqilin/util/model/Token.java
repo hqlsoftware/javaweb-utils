@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 import lombok.experimental.Accessors;
-import com.heqilin.util.JsonUtil;
+import com.heqilin.util.plugin.json.JsonUtil;
 
 /**
  * Token认证实体

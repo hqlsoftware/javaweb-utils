@@ -1,6 +1,6 @@
 package com.heqilin.util.model;
 
-import com.heqilin.util.JsonUtil;
+import com.heqilin.util.plugin.json.JsonUtil;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
@@ -47,7 +47,7 @@ public class ResultT<T> {
         return this.code==200;
     }
 
-    public Result toResult(){
+    public Result asResult(){
         return new Result().setCode(this.getCode())
                 .setMessage(this.getMessage())
                 .setData(this.getData());

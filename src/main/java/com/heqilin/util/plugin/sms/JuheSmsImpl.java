@@ -2,6 +2,7 @@ package com.heqilin.util.plugin.sms;
 
 import com.heqilin.util.model.Result;
 import com.heqilin.util.*;
+import com.heqilin.util.plugin.json.JsonUtil;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -16,6 +17,13 @@ import java.util.Properties;
 public class JuheSmsImpl implements ISms {
 
     private Properties prop = PropUtil.getProp(SystemUtil.getMyUtilConfigPath());
+
+    @Override
+    public Result isConfigurationSuccess(String mobile, String templateId, String signName) {
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        linkedHashMap.put("Code","1234");
+        return send("15061805283", linkedHashMap,"151074",null);
+    }
 
     @Override
     public Result send(String mobile, Map contentMap, String templateId, String signName) {
@@ -36,14 +44,5 @@ public class JuheSmsImpl implements ISms {
         }
 
         return ResultUtil.errorWithOperationFailed("发送失败:"+obj.get("reason"));
-    }
-
-    public static void main(String[] args) {
-        JuheSmsImpl juheSms = new JuheSmsImpl();
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        linkedHashMap.put("Mobile","15061805283");
-        linkedHashMap.put("SubjectName","test");
-        Result result = juheSms.send("15061805283", linkedHashMap,"151074",null);
-        System.out.println(result);
     }
 }

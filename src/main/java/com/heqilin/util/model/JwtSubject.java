@@ -2,7 +2,7 @@ package com.heqilin.util.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
-import com.heqilin.util.JsonUtil;
+import com.heqilin.util.plugin.json.JsonUtil;
 import lombok.Data;
 import lombok.experimental.Accessors;
 

@@ -1,10 +1,9 @@
 package com.heqilin.util.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-import com.heqilin.util.JsonUtil;
+import com.heqilin.util.plugin.json.JsonUtil;
 
 /**
  * 接口返回结果

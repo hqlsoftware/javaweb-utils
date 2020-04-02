@@ -1,4 +1,4 @@
-package com.heqilin.util;
+package com.heqilin.util.plugin.json;
 
 import com.heqilin.util.plugin.json.IJson;
 import com.heqilin.util.plugin.json.JsonFactory;

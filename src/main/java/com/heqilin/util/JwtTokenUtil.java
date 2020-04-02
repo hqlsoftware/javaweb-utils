@@ -4,8 +4,8 @@ import com.heqilin.util.model.JwtSubject;
 import com.heqilin.util.model.Result;
 import com.heqilin.util.model.ResultT;
 import com.heqilin.util.model.Token;
+import com.heqilin.util.plugin.json.JsonUtil;
 import io.jsonwebtoken.*;
-import io.jsonwebtoken.lang.Assert;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -129,7 +129,7 @@ public class JwtTokenUtil {
         //得到DefaultJwtParser
         ResultT<Claims> parseJwtTokenResult = parseJwtToken(token);
         if (!parseJwtTokenResult.isSuccess()) {
-            return parseJwtTokenResult.toResult();
+            return parseJwtTokenResult.asResult();
         }
         return checkTokenRule.apply(parseJwtTokenResult.getData());
     }

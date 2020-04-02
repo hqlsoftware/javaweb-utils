@@ -1,4 +1,4 @@
-package com.heqilin.util;
+package com.heqilin.util.plugin.sms;
 
 import com.heqilin.util.plugin.sms.ISms;
 import com.heqilin.util.plugin.sms.SmsFactory;

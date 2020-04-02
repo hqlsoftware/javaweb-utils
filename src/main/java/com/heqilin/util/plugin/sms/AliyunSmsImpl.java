@@ -9,7 +9,7 @@ import com.aliyuncs.exceptions.ServerException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.heqilin.util.model.Result;
-import com.heqilin.util.JsonUtil;
+import com.heqilin.util.plugin.json.JsonUtil;
 import com.heqilin.util.PropUtil;
 import com.heqilin.util.ResultUtil;
 import com.heqilin.util.SystemUtil;
@@ -28,6 +28,13 @@ public class AliyunSmsImpl implements ISms {
     private Properties prop = PropUtil.getProp(SystemUtil.getMyUtilConfigPath());
 
     @Override
+    public Result isConfigurationSuccess(String mobile, String templateId, String signName) {
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        linkedHashMap.put("code","1234");
+        return send(mobile,linkedHashMap,templateId,signName);
+    }
+
+    @Override
     public Result send(String mobile, Map contentMap, String templateId, String signName) {
         String content = "";
         if(contentMap!=null && !contentMap.isEmpty()){
@@ -38,10 +45,10 @@ public class AliyunSmsImpl implements ISms {
         IAcsClient client = new DefaultAcsClient(profile);
 
         CommonRequest request = new CommonRequest();
-        request.setMethod(MethodType.POST);
-        request.setDomain("dysmsapi.aliyuncs.com");
-        request.setVersion("2017-05-25");
-        request.setAction("SendSms");
+        request.setSysMethod(MethodType.POST);
+        request.setSysDomain("dysmsapi.aliyuncs.com");
+        request.setSysVersion("2017-05-25");
+        request.setSysAction("SendSms");
         request.putQueryParameter("PhoneNumbers", mobile);
         request.putQueryParameter("SignName", signName);
         request.putQueryParameter("TemplateCode", templateId);
@@ -57,13 +64,5 @@ public class AliyunSmsImpl implements ISms {
             e.printStackTrace();
         }
         return null;
-    }
-
-    public static void main(String[] args) {
-        AliyunSmsImpl aliyunSms = new AliyunSmsImpl();
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        linkedHashMap.put("code","15061805283");
-        Result result = aliyunSms.send("15061805283",linkedHashMap,"SMS_129740077","智题库");
-        System.out.println(result);
     }
 }
