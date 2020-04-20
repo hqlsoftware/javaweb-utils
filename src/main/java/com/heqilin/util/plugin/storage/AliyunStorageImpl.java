@@ -3,7 +3,7 @@ package com.heqilin.util.plugin.storage;
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.model.Bucket;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.heqilin.util.LogUtil;
+import com.heqilin.util.core.LogUtil;
 import com.heqilin.util.model.Result;
 import com.heqilin.util.model.ResultT;
 import com.heqilin.util.model.UploadResult;

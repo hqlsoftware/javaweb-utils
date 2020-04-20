@@ -1,9 +1,8 @@
-package com.heqilin.util;
+package com.heqilin.util.core;
 
 import com.heqilin.util.model.Constants;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.Properties;

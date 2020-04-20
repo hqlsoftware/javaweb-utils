@@ -10,9 +10,9 @@ import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.heqilin.util.model.Result;
 import com.heqilin.util.plugin.json.JsonUtil;
-import com.heqilin.util.PropUtil;
-import com.heqilin.util.ResultUtil;
-import com.heqilin.util.SystemUtil;
+import com.heqilin.util.core.PropUtil;
+import com.heqilin.util.core.ResultUtil;
+import com.heqilin.util.core.SystemUtil;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

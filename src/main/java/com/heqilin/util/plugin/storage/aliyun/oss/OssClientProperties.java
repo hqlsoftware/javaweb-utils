@@ -2,9 +2,9 @@ package com.heqilin.util.plugin.storage.aliyun.oss;
 
 import java.util.Properties;
 
-import com.heqilin.util.LogUtil;
-import com.heqilin.util.PropUtil;
-import com.heqilin.util.SystemUtil;
+import com.heqilin.util.core.LogUtil;
+import com.heqilin.util.core.PropUtil;
+import com.heqilin.util.core.SystemUtil;
 
 public class OssClientProperties {
 

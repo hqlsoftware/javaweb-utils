@@ -1,8 +1,8 @@
 package com.heqilin.util.plugin.cache;
 
-import com.heqilin.util.LogUtil;
-import com.heqilin.util.PropUtil;
-import com.heqilin.util.SystemUtil;
+import com.heqilin.util.core.LogUtil;
+import com.heqilin.util.core.PropUtil;
+import com.heqilin.util.core.SystemUtil;
 import net.spy.memcached.AddrUtil;
 import net.spy.memcached.ConnectionFactoryBuilder;
 import net.spy.memcached.MemcachedClient;

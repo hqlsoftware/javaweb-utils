@@ -1,6 +1,6 @@
 package com.heqilin.util.plugin.ueditor.upload;
 
-import com.heqilin.util.FileUtil;
+import com.heqilin.util.core.FileUtil;
 import com.heqilin.util.plugin.ueditor.define.AppInfo;
 import com.heqilin.util.plugin.ueditor.define.BaseState;
 import com.heqilin.util.plugin.ueditor.define.State;

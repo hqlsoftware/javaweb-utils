@@ -1,4 +1,4 @@
-package com.heqilin.util;
+package com.heqilin.util.core;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

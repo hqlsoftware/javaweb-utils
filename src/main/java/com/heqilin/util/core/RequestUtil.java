@@ -1,4 +1,4 @@
-package com.heqilin.util;
+package com.heqilin.util.core;
 
 import com.heqilin.util.plugin.json.JsonUtil;
 import eu.bitwalker.useragentutils.Browser;

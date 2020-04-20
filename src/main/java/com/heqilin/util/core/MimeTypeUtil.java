@@ -1,4 +1,4 @@
-package com.heqilin.util;
+package com.heqilin.util.core;
 
 /**
  * 媒体类型工具类

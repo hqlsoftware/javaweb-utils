@@ -1,9 +1,8 @@
-package com.heqilin.util;
+package com.heqilin.util.core;
 
 import lombok.extern.slf4j.Slf4j;
 import java.io.File;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 /**
  *

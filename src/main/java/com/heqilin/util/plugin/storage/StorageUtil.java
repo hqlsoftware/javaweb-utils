@@ -1,31 +1,20 @@
 package com.heqilin.util.plugin.storage;
 
-import com.aliyun.oss.OSSClient;
-import com.aliyun.oss.model.PutObjectResult;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.heqilin.util.*;
-import com.heqilin.util.model.Result;
+import com.heqilin.util.core.*;
 import com.heqilin.util.model.ResultT;
 import com.heqilin.util.model.UploadResult;
-import com.heqilin.util.plugin.storage.IStorage;
-import com.heqilin.util.plugin.storage.StorageFactory;
-import com.heqilin.util.plugin.storage.aliyun.oss.ObjectService;
-import com.heqilin.util.plugin.storage.aliyun.oss.OssClientFactory;
-import com.heqilin.util.plugin.storage.aliyun.oss.OssClientProperties;
 import com.heqilin.util.plugin.ueditor.ActionEnter;
 import com.heqilin.util.plugin.ueditor.PathFormat;
 import com.heqilin.util.plugin.ueditor.define.AppInfo;
 import com.heqilin.util.plugin.ueditor.define.BaseState;
-import com.heqilin.util.plugin.ueditor.define.FileType;
 import com.heqilin.util.plugin.ueditor.define.State;
-import com.heqilin.util.plugin.ueditor.upload.StorageManager;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
-import java.net.URLEncoder;
 import java.util.Map;
 
 /**

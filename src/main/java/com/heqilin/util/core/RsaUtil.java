@@ -1,4 +1,4 @@
-package com.heqilin.util;
+package com.heqilin.util.core;
 
 import javax.crypto.Cipher;
 import java.io.ByteArrayOutputStream;

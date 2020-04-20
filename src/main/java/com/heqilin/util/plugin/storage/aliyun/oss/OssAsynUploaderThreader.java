@@ -2,7 +2,7 @@ package com.heqilin.util.plugin.storage.aliyun.oss;
 
 import com.aliyun.oss.OSSClient;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.heqilin.util.LogUtil;
+import com.heqilin.util.core.LogUtil;
 
 import javax.servlet.http.HttpServletRequest;
 

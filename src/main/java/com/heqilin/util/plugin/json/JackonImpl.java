@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.heqilin.util.LogUtil;
-import com.heqilin.util.StringUtil;
+import com.heqilin.util.core.LogUtil;
+import com.heqilin.util.core.StringUtil;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;

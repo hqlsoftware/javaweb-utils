@@ -1,7 +1,7 @@
 package com.heqilin.util.plugin.poi;
 
-import com.heqilin.util.RandomUtil;
-import com.heqilin.util.SystemUtil;
+import com.heqilin.util.core.RandomUtil;
+import com.heqilin.util.core.SystemUtil;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;

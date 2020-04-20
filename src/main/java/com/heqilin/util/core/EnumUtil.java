@@ -1,4 +1,4 @@
-package com.heqilin.util;
+package com.heqilin.util.core;
 
 import com.heqilin.util.model.ResultEnum;
 import com.heqilin.util.model.SelectVO;

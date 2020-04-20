@@ -1,7 +1,7 @@
 package com.heqilin.util.plugin.cache;
 
 import com.heqilin.util.model.Result;
-import com.heqilin.util.ResultUtil;
+import com.heqilin.util.core.ResultUtil;
 
 import java.util.function.Supplier;
 

@@ -3,8 +3,8 @@ package com.heqilin.util.plugin.storage.aliyun.oss;
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.model.PutObjectResult;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.heqilin.util.LogUtil;
-import com.heqilin.util.SystemUtil;
+import com.heqilin.util.core.LogUtil;
+import com.heqilin.util.core.SystemUtil;
 
 import java.io.File;
 import java.io.FileInputStream;

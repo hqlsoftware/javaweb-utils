@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.aliyun.oss.OSSClient;
-import com.heqilin.util.SystemUtil;
+import com.heqilin.util.core.SystemUtil;
 import com.heqilin.util.plugin.storage.aliyun.oss.BucketService;
 import com.heqilin.util.plugin.storage.aliyun.oss.ObjectService;
 import com.heqilin.util.plugin.storage.aliyun.oss.OssClientFactory;

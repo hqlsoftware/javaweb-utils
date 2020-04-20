@@ -5,7 +5,7 @@ import java.util.List;
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.model.Bucket;
 import com.aliyun.oss.model.CannedAccessControlList;
-import com.heqilin.util.LogUtil;
+import com.heqilin.util.core.LogUtil;
 /**
  * Bucket是OSS上的命名空间，也是计费、权限控制、日志记录等高级功能的管理实体；Bucket名称在整个OSS服务中具有全局唯一性，且不能修改；
  * 存储在OSS上的每个Object必须都包含在某个Bucket中

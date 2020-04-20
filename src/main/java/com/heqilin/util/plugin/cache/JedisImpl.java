@@ -1,8 +1,8 @@
 package com.heqilin.util.plugin.cache;
 
 import com.heqilin.util.plugin.json.JsonUtil;
-import com.heqilin.util.PropUtil;
-import com.heqilin.util.SystemUtil;
+import com.heqilin.util.core.PropUtil;
+import com.heqilin.util.core.SystemUtil;
 import redis.clients.jedis.*;
 
 import java.util.*;

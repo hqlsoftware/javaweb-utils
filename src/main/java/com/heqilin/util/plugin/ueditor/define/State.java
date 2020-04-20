@@ -3,9 +3,8 @@ package com.heqilin.util.plugin.ueditor.define;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.heqilin.util.LogUtil;
-import com.heqilin.util.ResultTUtil;
-import com.heqilin.util.ResultUtil;
+import com.heqilin.util.core.LogUtil;
+import com.heqilin.util.core.ResultTUtil;
 import com.heqilin.util.model.ResultT;
 import com.heqilin.util.model.UploadResult;
 

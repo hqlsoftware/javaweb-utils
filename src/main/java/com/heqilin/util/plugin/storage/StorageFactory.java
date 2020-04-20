@@ -1,8 +1,8 @@
 package com.heqilin.util.plugin.storage;
 
-import com.heqilin.util.PropUtil;
-import com.heqilin.util.StringUtil;
-import com.heqilin.util.SystemUtil;
+import com.heqilin.util.core.PropUtil;
+import com.heqilin.util.core.StringUtil;
+import com.heqilin.util.core.SystemUtil;
 
 /**
  * @author heqilin

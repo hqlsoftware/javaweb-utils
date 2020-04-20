@@ -1,6 +1,6 @@
 package com.heqilin.util;
 
-import com.heqilin.util.StringUtil;
+import com.heqilin.util.core.StringUtil;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,6 +1,6 @@
 package com.heqilin.util;
 
-import com.heqilin.util.DateUtil;
+import com.heqilin.util.core.DateUtil;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
