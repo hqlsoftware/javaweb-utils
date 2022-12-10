@@ -106,7 +106,7 @@
         <aliyunsdk.oss.version>3.8.1</aliyunsdk.oss.version>
         <bytebuddy.version>1.10.9</bytebuddy.version>
         <common.fileupload.version>1.4</common.fileupload.version>
-        <spring.web.version>5.2.5.RELEASE</spring.web.version>
+        <spring.web.version>6.0.0</spring.web.version>
     </properties>
     <dependencies>
         <dependency>
